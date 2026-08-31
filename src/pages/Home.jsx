@@ -1776,7 +1776,7 @@ export default function Home() {
   const [upImageFile, setUpImageFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
-  // Load public rates from Supabase on startup
+  // Load public rates from Supabase on startup & subscribe to Realtime updates across ALL devices
   useEffect(() => {
     const fetchRatesAndProducts = async () => {
       const { data, error } = await supabase.from('hardik_rates').select('*').eq('id', 1).single();
@@ -1801,6 +1801,32 @@ export default function Home() {
       }
     };
     fetchRatesAndProducts();
+
+    // Realtime listener to sync rate updates & trigger notifications across ALL devices instantly
+    const channel = supabase
+      .channel('hardik_rates_realtime')
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'hardik_rates' }, (payload) => {
+        if (payload && payload.new) {
+          setGoldRates(payload.new);
+          setShowPwaNotification(true);
+          
+          if ('Notification' in window && Notification.permission === 'granted') {
+            try {
+              new Notification('HARDIK JEWELLERS - Live Rate Update!', {
+                body: `24K: ₹${payload.new.gold24k}/g | 22K: ₹${payload.new.gold22k}/g`,
+                icon: '/assets/logo.jpg'
+              });
+            } catch (e) {
+              console.log('Notification API error:', e);
+            }
+          }
+        }
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   // Auto-advance banner carousel
