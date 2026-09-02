@@ -101,8 +101,7 @@ const gentsBraceletImages = [
   { id: 'gbr-54', url: '/assets/ZIPGENTSBRACELET/GBR54.jpg', title: 'Gents Gold Bracelet GBR54', category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
   { id: 'gbr-55', url: '/assets/ZIPGENTSBRACELET/GBR55.jpg', title: 'Gents Gold Bracelet GBR55', category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
   { id: 'gbr-56', url: '/assets/ZIPGENTSBRACELET/GBR56.jpg', title: 'Gents Gold Bracelet GBR56', category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'gbr-57', url: '/assets/ZIPGENTSBRACELET/GBR57.jpg', title: 'Gents Gold Bracelet GBR57', category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'gbr-57', url: '/assets/ZIPGENTSBRACELET/GBR57.jpg', title: 'Gents Gold Bracelet GBR57', category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' }];
 
 // Gents Chains - all images from ZIPGENTSCHAINS
 const gentsChainsImages = [
@@ -156,10 +155,7 @@ const gentsChainsImages = [
   { id: 'gic-95', url: '/assets/ZIPGENTSCHAINS/GIC95.jpg', title: 'Gents Italian Chain GIC95', category: 'GENTS', subCategory: 'CHAINS', purity: '22K Hallmarked Gold' },
   { id: 'gic-96', url: '/assets/ZIPGENTSCHAINS/GIC96.jpg', title: 'Gents Italian Chain GIC96', category: 'GENTS', subCategory: 'CHAINS', purity: '22K Hallmarked Gold' },
   { id: 'gic-98', url: '/assets/ZIPGENTSCHAINS/GIC98.jpg', title: 'Gents Italian Chain GIC98', category: 'GENTS', subCategory: 'CHAINS', purity: '22K Hallmarked Gold' },
-  { id: 'gic-99', url: '/assets/ZIPGENTSCHAINS/GIC99.jpg', title: 'Gents Italian Chain GIC99', category: 'GENTS', subCategory: 'CHAINS', purity: '22K Hallmarked Gold' },
-  { id: 'gkb-28', url: '/assets/ZIPGENTSCHAINS/GKB28.jpg', title: 'Gents Kadi Bracelet GKB28', category: 'GENTS', subCategory: 'CHAINS', purity: '22K Hallmarked Gold' },
-  { id: 'gkb-29', url: '/assets/ZIPGENTSCHAINS/GKB29.jpg', title: 'Gents Kadi Bracelet GKB29', category: 'GENTS', subCategory: 'CHAINS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'gic-99', url: '/assets/ZIPGENTSCHAINS/GIC99.jpg', title: 'Gents Italian Chain GIC99', category: 'GENTS', subCategory: 'CHAINS', purity: '22K Hallmarked Gold' }];
 
 // Gents Lockets - all images from ZIPGENTSLOCKET
 const gentsLocketImages = [
@@ -214,8 +210,7 @@ const gentsLocketImages = [
   { id: 'glk-75', url: '/assets/ZIPGENTSLOCKET/GLK75.jpg', title: 'Gents Gold Locket GLK75', category: 'GENTS', subCategory: 'LOCKETS', purity: '22K Hallmarked Gold' },
   { id: 'glk-76', url: '/assets/ZIPGENTSLOCKET/GLK76.jpg', title: 'Gents Gold Locket GLK76', category: 'GENTS', subCategory: 'LOCKETS', purity: '22K Hallmarked Gold' },
   { id: 'glk-78', url: '/assets/ZIPGENTSLOCKET/GLK78.jpg', title: 'Gents Gold Locket GLK78', category: 'GENTS', subCategory: 'LOCKETS', purity: '22K Hallmarked Gold' },
-  { id: 'glk-79', url: '/assets/ZIPGENTSLOCKET/GLK79.jpg', title: 'Gents Gold Locket GLK79', category: 'GENTS', subCategory: 'LOCKETS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'glk-79', url: '/assets/ZIPGENTSLOCKET/GLK79.jpg', title: 'Gents Gold Locket GLK79', category: 'GENTS', subCategory: 'LOCKETS', purity: '22K Hallmarked Gold' }];
 
 // Necklaces / Chains / Wedding items
 const earringImages = [
@@ -327,8 +322,7 @@ const ladiesBraceletImages = [
   { id: 'lb-glb5', url: '/assets/ZIPLADIESBRACELET/GLB5.jpg', title: 'Ladies Bracelet GLB5', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
   { id: 'lb-glb7', url: '/assets/ZIPLADIESBRACELET/GLB7.jpg', title: 'Ladies Bracelet GLB7', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
   { id: 'lb-glb8', url: '/assets/ZIPLADIESBRACELET/GLB8.jpg', title: 'Ladies Bracelet GLB8', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb9', url: '/assets/ZIPLADIESBRACELET/GLB9.jpg', title: 'Ladies Bracelet GLB9', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'lb-glb9', url: '/assets/ZIPLADIESBRACELET/GLB9.jpg', title: 'Ladies Bracelet GLB9', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' }];
 
 // Long Mangalsutra
 const longMangalsutraImages = [
@@ -395,8 +389,7 @@ const longMangalsutraImages = [
   { id: 'lm-ggt81', url: '/assets/ZIPLONGMANGALSUTRA/GGT81.jpg', title: 'Long Mangalsutra GGT81', category: 'LADIES', subCategory: 'LONG MANGALSUTRA', purity: '22K Hallmarked Gold' },
   { id: 'lm-ggt82', url: '/assets/ZIPLONGMANGALSUTRA/GGT82.jpg', title: 'Long Mangalsutra GGT82', category: 'LADIES', subCategory: 'LONG MANGALSUTRA', purity: '22K Hallmarked Gold' },
   { id: 'lm-ggt83', url: '/assets/ZIPLONGMANGALSUTRA/GGT83.jpg', title: 'Long Mangalsutra GGT83', category: 'LADIES', subCategory: 'LONG MANGALSUTRA', purity: '22K Hallmarked Gold' },
-  { id: 'lm-ggt9', url: '/assets/ZIPLONGMANGALSUTRA/GGT9.jpg', title: 'Long Mangalsutra GGT9', category: 'LADIES', subCategory: 'LONG MANGALSUTRA', purity: '22K Hallmarked Gold' },
-];
+  { id: 'lm-ggt9', url: '/assets/ZIPLONGMANGALSUTRA/GGT9.jpg', title: 'Long Mangalsutra GGT9', category: 'LADIES', subCategory: 'LONG MANGALSUTRA', purity: '22K Hallmarked Gold' }];
 
 // Short Mangalsutra
 const shortMangalsutraImages = [
@@ -530,8 +523,7 @@ const shortMangalsutraImages = [
   { id: 'sm-gms95', url: '/assets/ZIPSHORTMANGALSUTRA/GMS95.jpg', title: 'Short Mangalsutra GMS95', category: 'LADIES', subCategory: 'SHORT MANGALSUTRA', purity: '22K Hallmarked Gold' },
   { id: 'sm-gms96', url: '/assets/ZIPSHORTMANGALSUTRA/GMS96.jpg', title: 'Short Mangalsutra GMS96', category: 'LADIES', subCategory: 'SHORT MANGALSUTRA', purity: '22K Hallmarked Gold' },
   { id: 'sm-gms98', url: '/assets/ZIPSHORTMANGALSUTRA/GMS98.jpg', title: 'Short Mangalsutra GMS98', category: 'LADIES', subCategory: 'SHORT MANGALSUTRA', purity: '22K Hallmarked Gold' },
-  { id: 'sm-gms99', url: '/assets/ZIPSHORTMANGALSUTRA/GMS99.jpg', title: 'Short Mangalsutra GMS99', category: 'LADIES', subCategory: 'SHORT MANGALSUTRA', purity: '22K Hallmarked Gold' },
-];
+  { id: 'sm-gms99', url: '/assets/ZIPSHORTMANGALSUTRA/GMS99.jpg', title: 'Short Mangalsutra GMS99', category: 'LADIES', subCategory: 'SHORT MANGALSUTRA', purity: '22K Hallmarked Gold' }];
 
 // Necklaces
 const necklaceImages = [
@@ -629,8 +621,7 @@ const necklaceImages = [
   { id: 'nc-gsn90', url: '/assets/ZIPNECKLACES/GSN90.jpg', title: 'Necklace GSN90', category: 'LADIES', subCategory: 'NECKLACES', purity: '22K Hallmarked Gold' },
   { id: 'nc-gsn91', url: '/assets/ZIPNECKLACES/GSN91.jpg', title: 'Necklace GSN91', category: 'LADIES', subCategory: 'NECKLACES', purity: '22K Hallmarked Gold' },
   { id: 'nc-gsn92', url: '/assets/ZIPNECKLACES/GSN92.jpg', title: 'Necklace GSN92', category: 'LADIES', subCategory: 'NECKLACES', purity: '22K Hallmarked Gold' },
-  { id: 'nc-gsn93', url: '/assets/ZIPNECKLACES/GSN93.jpg', title: 'Necklace GSN93', category: 'LADIES', subCategory: 'NECKLACES', purity: '22K Hallmarked Gold' },
-];
+  { id: 'nc-gsn93', url: '/assets/ZIPNECKLACES/GSN93.jpg', title: 'Necklace GSN93', category: 'LADIES', subCategory: 'NECKLACES', purity: '22K Hallmarked Gold' }];
 
 
 // Ladies Rings
@@ -817,8 +808,7 @@ const ladiesRingImages = [
   { id: 'lr-grk83', url: '/assets/ZIPLADIESRINGS/GRK83.jpg', title: 'Ladies Ring GRK83', category: 'LADIES', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'lr-grk84', url: '/assets/ZIPLADIESRINGS/GRK84.jpg', title: 'Ladies Ring GRK84', category: 'LADIES', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'lr-grk85', url: '/assets/ZIPLADIESRINGS/GRK85.jpg', title: 'Ladies Ring GRK85', category: 'LADIES', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'lr-grk86', url: '/assets/ZIPLADIESRINGS/GRK86.jpg', title: 'Ladies Ring GRK86', category: 'LADIES', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'lr-grk86', url: '/assets/ZIPLADIESRINGS/GRK86.jpg', title: 'Ladies Ring GRK86', category: 'LADIES', subCategory: 'RINGS', purity: '22K Hallmarked Gold' }];
 
 
 // Daily Wear Tops
@@ -945,8 +935,7 @@ const dailyWearTopsImages = [
   { id: 'er-top-gtp96', url: '/assets/ZIPEARRINGS_NEW/DAILY_WEAR_TOPS/GTP96.jpg', title: 'Daily Wear Tops GTP96', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'DAILY WEAR TOPS', purity: '22K Hallmarked Gold' },
   { id: 'er-top-gtp97', url: '/assets/ZIPEARRINGS_NEW/DAILY_WEAR_TOPS/GTP97.jpg', title: 'Daily Wear Tops GTP97', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'DAILY WEAR TOPS', purity: '22K Hallmarked Gold' },
   { id: 'er-top-gtp98', url: '/assets/ZIPEARRINGS_NEW/DAILY_WEAR_TOPS/GTP98.jpg', title: 'Daily Wear Tops GTP98', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'DAILY WEAR TOPS', purity: '22K Hallmarked Gold' },
-  { id: 'er-top-gtp99', url: '/assets/ZIPEARRINGS_NEW/DAILY_WEAR_TOPS/GTP99.jpg', title: 'Daily Wear Tops GTP99', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'DAILY WEAR TOPS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'er-top-gtp99', url: '/assets/ZIPEARRINGS_NEW/DAILY_WEAR_TOPS/GTP99.jpg', title: 'Daily Wear Tops GTP99', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'DAILY WEAR TOPS', purity: '22K Hallmarked Gold' }];
 
 // Jumkas
 const jumkaImages = [
@@ -1026,8 +1015,7 @@ const jumkaImages = [
   { id: 'er-jum-gkz87', url: '/assets/ZIPEARRINGS_NEW/JUMKAS/GKZ87.jpg', title: 'Jumkas GKZ87', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'JUMKAS', purity: '22K Hallmarked Gold' },
   { id: 'er-jum-gkz88', url: '/assets/ZIPEARRINGS_NEW/JUMKAS/GKZ88.jpg', title: 'Jumkas GKZ88', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'JUMKAS', purity: '22K Hallmarked Gold' },
   { id: 'er-jum-gkz89', url: '/assets/ZIPEARRINGS_NEW/JUMKAS/GKZ89.jpg', title: 'Jumkas GKZ89', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'JUMKAS', purity: '22K Hallmarked Gold' },
-  { id: 'er-jum-gkz9', url: '/assets/ZIPEARRINGS_NEW/JUMKAS/GKZ9.jpg', title: 'Jumkas GKZ9', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'JUMKAS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'er-jum-gkz9', url: '/assets/ZIPEARRINGS_NEW/JUMKAS/GKZ9.jpg', title: 'Jumkas GKZ9', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'JUMKAS', purity: '22K Hallmarked Gold' }];
 
 // Sui Dhaga
 const suiDhagaImages = [
@@ -1084,8 +1072,7 @@ const suiDhagaImages = [
   { id: 'er-sui-gsd67', url: '/assets/ZIPEARRINGS_NEW/SUI_DHAGA/GSD67.jpg', title: 'Sui Dhaga GSD67', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'SUI DHAGA', purity: '22K Hallmarked Gold' },
   { id: 'er-sui-gsd7', url: '/assets/ZIPEARRINGS_NEW/SUI_DHAGA/GSD7.jpg', title: 'Sui Dhaga GSD7', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'SUI DHAGA', purity: '22K Hallmarked Gold' },
   { id: 'er-sui-gsd8', url: '/assets/ZIPEARRINGS_NEW/SUI_DHAGA/GSD8.jpg', title: 'Sui Dhaga GSD8', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'SUI DHAGA', purity: '22K Hallmarked Gold' },
-  { id: 'er-sui-gsd9', url: '/assets/ZIPEARRINGS_NEW/SUI_DHAGA/GSD9.jpg', title: 'Sui Dhaga GSD9', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'SUI DHAGA', purity: '22K Hallmarked Gold' },
-];
+  { id: 'er-sui-gsd9', url: '/assets/ZIPEARRINGS_NEW/SUI_DHAGA/GSD9.jpg', title: 'Sui Dhaga GSD9', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'SUI DHAGA', purity: '22K Hallmarked Gold' }];
 
 // Bali
 const baliImages = [
@@ -1143,8 +1130,7 @@ const baliImages = [
   { id: 'er-bali-ger94', url: '/assets/ZIPEARRINGS_NEW/BALI/GER94.jpg', title: 'Bali GER94', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'EARRINGS', purity: '22K Hallmarked Gold' },
   { id: 'er-bali-ger95', url: '/assets/ZIPEARRINGS_NEW/BALI/GER95.jpg', title: 'Bali GER95', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'EARRINGS', purity: '22K Hallmarked Gold' },
   { id: 'er-bali-ger96', url: '/assets/ZIPEARRINGS_NEW/BALI/GER96.jpg', title: 'Bali GER96', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'EARRINGS', purity: '22K Hallmarked Gold' },
-  { id: 'er-bali-ger97', url: '/assets/ZIPEARRINGS_NEW/BALI/GER97.jpg', title: 'Bali GER97', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'EARRINGS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'er-bali-ger97', url: '/assets/ZIPEARRINGS_NEW/BALI/GER97.jpg', title: 'Bali GER97', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'EARRINGS', purity: '22K Hallmarked Gold' }];
 
 // Buthi
 const buthiImages = [
@@ -1202,8 +1188,7 @@ const buthiImages = [
   { id: 'er-but-gbt95', url: '/assets/ZIPEARRINGS_NEW/BUTHI/GBT95.jpg', title: 'Buthi GBT95', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'BUTHI', purity: '22K Hallmarked Gold' },
   { id: 'er-but-gbt96', url: '/assets/ZIPEARRINGS_NEW/BUTHI/GBT96.jpg', title: 'Buthi GBT96', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'BUTHI', purity: '22K Hallmarked Gold' },
   { id: 'er-but-gbt97', url: '/assets/ZIPEARRINGS_NEW/BUTHI/GBT97.jpg', title: 'Buthi GBT97', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'BUTHI', purity: '22K Hallmarked Gold' },
-  { id: 'er-but-gbt98', url: '/assets/ZIPEARRINGS_NEW/BUTHI/GBT98.jpg', title: 'Buthi GBT98', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'BUTHI', purity: '22K Hallmarked Gold' },
-];
+  { id: 'er-but-gbt98', url: '/assets/ZIPEARRINGS_NEW/BUTHI/GBT98.jpg', title: 'Buthi GBT98', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'BUTHI', purity: '22K Hallmarked Gold' }];
 
 // Kanchains
 const kanchainImages = [
@@ -1250,8 +1235,7 @@ const kanchainImages = [
   { id: 'er-kan-gkn62', url: '/assets/ZIPEARRINGS_NEW/KANCHAINS/GKN62.jpg', title: 'Kanchains GKN62', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'KANCHAINS', purity: '22K Hallmarked Gold' },
   { id: 'er-kan-gkn7', url: '/assets/ZIPEARRINGS_NEW/KANCHAINS/GKN7.jpg', title: 'Kanchains GKN7', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'KANCHAINS', purity: '22K Hallmarked Gold' },
   { id: 'er-kan-gkn8', url: '/assets/ZIPEARRINGS_NEW/KANCHAINS/GKN8.jpg', title: 'Kanchains GKN8', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'KANCHAINS', purity: '22K Hallmarked Gold' },
-  { id: 'er-kan-gkn9', url: '/assets/ZIPEARRINGS_NEW/KANCHAINS/GKN9.jpg', title: 'Kanchains GKN9', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'KANCHAINS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'er-kan-gkn9', url: '/assets/ZIPEARRINGS_NEW/KANCHAINS/GKN9.jpg', title: 'Kanchains GKN9', category: 'LADIES', subCategory: 'EARRINGS', earringType: 'KANCHAINS', purity: '22K Hallmarked Gold' }];
 
 
 // Wedding Collection - New 8 images
@@ -1263,8 +1247,7 @@ const weddingSetImages = [
   { id: 'wd-new-5', url: '/assets/ZIPWEDDING_NEW/ws_new_5.jpg', title: 'Gold Chain & Ring Bridal Combo', category: 'WEDDING SET', subCategory: 'ALL', purity: '22K Hallmarked Gold' },
   { id: 'wd-new-6', url: '/assets/ZIPWEDDING_NEW/ws_new_6.jpg', title: 'Classic Gold Haram & Mangalsutra Set', category: 'WEDDING SET', subCategory: 'ALL', purity: '22K Hallmarked Gold' },
   { id: 'wd-new-7', url: '/assets/ZIPWEDDING_NEW/ws_new_7.jpg', title: 'Designer Mangalsutra & Earrings Set', category: 'WEDDING SET', subCategory: 'ALL', purity: '22K Hallmarked Gold' },
-  { id: 'wd-new-8', url: '/assets/ZIPWEDDING_NEW/ws_new_8.jpg', title: 'Gold Chain Bangle & Ring Combo', category: 'WEDDING SET', subCategory: 'ALL', purity: '22K Hallmarked Gold' },
-];
+  { id: 'wd-new-8', url: '/assets/ZIPWEDDING_NEW/ws_new_8.jpg', title: 'Gold Chain Bangle & Ring Combo', category: 'WEDDING SET', subCategory: 'ALL', purity: '22K Hallmarked Gold' }];
 
 // Gents Rings
 const gentsRingImages = [
@@ -1287,7 +1270,7 @@ const gentsRingImages = [
   { id: 'gr-gdr25', url: '/assets/ZIPGENTSRINGS/GDR25.jpg', title: 'Gents Ring GDR25', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-gdr26', url: '/assets/ZIPGENTSRINGS/GDR26.jpg', title: 'Gents Ring GDR26', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-gdr27', url: '/assets/ZIPGENTSRINGS/GDR27.jpg', title: 'Gents Ring GDR27', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-gdr28', url: '/assets/ZIPGENTSRINGS/GDR28.jpg', title: 'Gents Ring GDR28', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
+  
   { id: 'gr-gdr3', url: '/assets/ZIPGENTSRINGS/GDR3.jpg', title: 'Gents Ring GDR3', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-gdr4', url: '/assets/ZIPGENTSRINGS/GDR4.jpg', title: 'Gents Ring GDR4', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-gdr5', url: '/assets/ZIPGENTSRINGS/GDR5.jpg', title: 'Gents Ring GDR5', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
@@ -1344,32 +1327,32 @@ const gentsRingImages = [
   { id: 'gr-grh11', url: '/assets/ZIPGENTSRINGS/GRH11.jpg', title: 'Gents Ring GRH11', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh17', url: '/assets/ZIPGENTSRINGS/GRH17.jpg', title: 'Gents Ring GRH17', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh18', url: '/assets/ZIPGENTSRINGS/GRH18.jpg', title: 'Gents Ring GRH18', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh2', url: '/assets/ZIPGENTSRINGS/GRH2.jpg', title: 'Gents Ring GRH2', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh20', url: '/assets/ZIPGENTSRINGS/GRH20.jpg', title: 'Gents Ring GRH20', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh28', url: '/assets/ZIPGENTSRINGS/GRH28.jpg', title: 'Gents Ring GRH28', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh29', url: '/assets/ZIPGENTSRINGS/GRH29.jpg', title: 'Gents Ring GRH29', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
+  
+  
+  
+  
   { id: 'gr-grh3', url: '/assets/ZIPGENTSRINGS/GRH3.jpg', title: 'Gents Ring GRH3', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh36', url: '/assets/ZIPGENTSRINGS/GRH36.jpg', title: 'Gents Ring GRH36', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh37', url: '/assets/ZIPGENTSRINGS/GRH37.jpg', title: 'Gents Ring GRH37', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh38', url: '/assets/ZIPGENTSRINGS/GRH38.jpg', title: 'Gents Ring GRH38', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh44', url: '/assets/ZIPGENTSRINGS/GRH44.jpg', title: 'Gents Ring GRH44', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
+  
+  
   { id: 'gr-grh45', url: '/assets/ZIPGENTSRINGS/GRH45.jpg', title: 'Gents Ring GRH45', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh46', url: '/assets/ZIPGENTSRINGS/GRH46.jpg', title: 'Gents Ring GRH46', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh50', url: '/assets/ZIPGENTSRINGS/GRH50.jpg', title: 'Gents Ring GRH50', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh51', url: '/assets/ZIPGENTSRINGS/GRH51.jpg', title: 'Gents Ring GRH51', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh52', url: '/assets/ZIPGENTSRINGS/GRH52.jpg', title: 'Gents Ring GRH52', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh6', url: '/assets/ZIPGENTSRINGS/GRH6.jpg', title: 'Gents Ring GRH6', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh60', url: '/assets/ZIPGENTSRINGS/GRH60.jpg', title: 'Gents Ring GRH60', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh61', url: '/assets/ZIPGENTSRINGS/GRH61.jpg', title: 'Gents Ring GRH61', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh62', url: '/assets/ZIPGENTSRINGS/GRH62.jpg', title: 'Gents Ring GRH62', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh65', url: '/assets/ZIPGENTSRINGS/GRH65.jpg', title: 'Gents Ring GRH65', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh66', url: '/assets/ZIPGENTSRINGS/GRH66.jpg', title: 'Gents Ring GRH66', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh67', url: '/assets/ZIPGENTSRINGS/GRH67.jpg', title: 'Gents Ring GRH67', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh68', url: '/assets/ZIPGENTSRINGS/GRH68.jpg', title: 'Gents Ring GRH68', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh69', url: '/assets/ZIPGENTSRINGS/GRH69.jpg', title: 'Gents Ring GRH69', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   { id: 'gr-grh71', url: '/assets/ZIPGENTSRINGS/GRH71.jpg', title: 'Gents Ring GRH71', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh72', url: '/assets/ZIPGENTSRINGS/GRH72.jpg', title: 'Gents Ring GRH72', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh73', url: '/assets/ZIPGENTSRINGS/GRH73.jpg', title: 'Gents Ring GRH73', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
+  
   { id: 'gr-grh76', url: '/assets/ZIPGENTSRINGS/GRH76.jpg', title: 'Gents Ring GRH76', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh77', url: '/assets/ZIPGENTSRINGS/GRH77.jpg', title: 'Gents Ring GRH77', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh78', url: '/assets/ZIPGENTSRINGS/GRH78.jpg', title: 'Gents Ring GRH78', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
@@ -1381,8 +1364,7 @@ const gentsRingImages = [
   { id: 'gr-grh92', url: '/assets/ZIPGENTSRINGS/GRH92.jpg', title: 'Gents Ring GRH92', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh93', url: '/assets/ZIPGENTSRINGS/GRH93.jpg', title: 'Gents Ring GRH93', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
   { id: 'gr-grh94', url: '/assets/ZIPGENTSRINGS/GRH94.jpg', title: 'Gents Ring GRH94', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-  { id: 'gr-grh95', url: '/assets/ZIPGENTSRINGS/GRH95.jpg', title: 'Gents Ring GRH95', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' },
-];
+  { id: 'gr-grh95', url: '/assets/ZIPGENTSRINGS/GRH95.jpg', title: 'Gents Ring GRH95', category: 'GENTS', subCategory: 'RINGS', purity: '22K Hallmarked Gold' }];
 
 const silverImages = [
   { id: 'silver-shb1', url: '/assets/silver_heart_bangles.jpg', title: 'Pure Silver Heart Kada Bangle Pair', category: 'SILVER COLLECTION', subCategory: 'SILVER BRACELETS', purity: '92.5 Sterling Silver' }
