@@ -1480,7 +1480,7 @@ export default function Home() {
     setCatSlideIndex((prev) => (prev - 1 + 4) % 4);
   };
   const [activeCategory, setActiveCategory] = useState('LADIES');
-  const [activeSubCategory, setActiveSubCategory] = useState('BANGLES');
+  const [activeSubCategory, setActiveSubCategory] = useState('SHORT MANGALSUTRA');
   const [activeEarringType, setActiveEarringType] = useState('ALL');
   const [visibleCount, setVisibleCount] = useState(16);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1864,7 +1864,6 @@ export default function Home() {
     setActiveSlide((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
   };
 
-
   const toggleLike = (id) => {
     const isAdding = !likedProducts[id];
     setLikedProducts(prev => ({ ...prev, [id]: isAdding }));
@@ -1875,7 +1874,7 @@ export default function Home() {
 
   const handleCategoryClick = (cat) => {
     setActiveCategory(cat);
-    setActiveSubCategory('ALL');
+    setActiveSubCategory(cat === 'LADIES' ? 'SHORT MANGALSUTRA' : 'ALL');
     setActiveEarringType('ALL');
     const element = document.getElementById('showcase');
     if (element) {
@@ -1885,7 +1884,7 @@ export default function Home() {
 
   const handleSubCategoryClick = (sub) => {
     setActiveSubCategory(sub);
-    setActiveEarringType('ALL'); // reset earring type when changing sub-cat
+    setActiveEarringType('ALL');
   };
 
   const handleGoToMainAdmin = () => {
@@ -4036,7 +4035,7 @@ export default function Home() {
               color: '#555555',
               lineHeight: '1.4'
             }}>
-              Gold rates updated! <>24K: <strong>₹{goldRates.gold24k}/g</strong> | </>}22K: <strong>₹{goldRates.gold22k}/g</strong>.
+              Gold rates updated! <>24K: <strong>₹{goldRates.gold24k}/g</strong> | </>22K: <strong>₹{goldRates.gold22k}/g</strong>.
             </p>
           </div>
 
