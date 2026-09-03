@@ -149,10 +149,11 @@ export default function AdminDashboard() {
     if (status === 'approved') {
       const { data: payment } = await supabase.from('payments').select('amount').eq('id', paymentId).single();
       if (payment) {
-        const { data: rates } = await supabase.from('hardik_rates').select('gold24k').eq('id', 1).single();
-        if (rates && rates.gold24k > 0) {
-          const effectiveRate = rates.gold24k * 1.11 * 1.03; // Rate + 11% making + 3% GST
-          updateData.gold_rate = rates.gold24k;
+        const { data: rates } = await supabase.from('hardik_rates').select('gold24k, gold22k').eq('id', 1).single();
+        const activeRate = rates?.gold22k || rates?.gold24k;
+        if (activeRate > 0) {
+          const effectiveRate = activeRate * 1.11 * 1.03; // Rate + 11% making + 3% GST
+          updateData.gold_rate = activeRate;
           updateData.gold_purchased = Number((payment.amount / effectiveRate).toFixed(4));
         }
       }
@@ -195,10 +196,11 @@ export default function AdminDashboard() {
 
     let gold_rate = null;
     let gold_purchased = null;
-    const { data: rates } = await supabase.from('hardik_rates').select('gold24k').eq('id', 1).single();
-    if (rates && rates.gold24k > 0) {
-      gold_rate = rates.gold24k;
-      gold_purchased = Number((amountFloat / rates.gold24k).toFixed(4));
+    const { data: rates } = await supabase.from('hardik_rates').select('gold24k, gold22k').eq('id', 1).single();
+    const activeRate = rates?.gold22k || rates?.gold24k;
+    if (activeRate > 0) {
+      gold_rate = activeRate;
+      gold_purchased = Number((amountFloat / activeRate).toFixed(4));
     }
 
     const { error } = await supabase.from('payments').insert([{
