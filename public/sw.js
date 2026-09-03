@@ -19,7 +19,7 @@ self.addEventListener('fetch', (e) => {
 // Listen to background push events when the app is closed
 self.addEventListener('push', (event) => {
   let payload = {
-    title: 'Laxmi Jewellers',
+    title: 'Hardik Jewellers',
     body: 'Live Gold Rate Update! Check today\'s latest prices.'
   };
 
@@ -28,7 +28,7 @@ self.addEventListener('push', (event) => {
       payload = event.data.json();
     } catch (e) {
       payload = {
-        title: 'Laxmi Jewellers',
+        title: 'Hardik Jewellers',
         body: event.data.text()
       };
     }
