@@ -1,5 +1,19 @@
 {
+  "functions": {
+    "api/send-push.js": {
+      "memory": 512,
+      "maxDuration": 15
+    },
+    "api/save-subscription.js": {
+      "memory": 512,
+      "maxDuration": 15
+    }
+  },
   "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    },
     {
       "source": "/((?!assets/|sw.js|manifest.json|favicon.svg|logo.png|.*\\.).*)",
       "destination": "/index.html"
