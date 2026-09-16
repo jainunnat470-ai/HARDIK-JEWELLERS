@@ -29,6 +29,62 @@ export default function AdminDashboard() {
   const [instaUrl, setInstaUrl] = useState('');
   const [updatingInsta, setUpdatingInsta] = useState(false);
   const [inquiries, setInquiries] = useState([]);
+  const [isExportingZip, setIsExportingZip] = useState(false);
+
+  const handleExportProductsZip = async () => {
+    setIsExportingZip(true);
+    try {
+      const JSZip = (await import('jszip')).default;
+      const zip = new JSZip();
+
+      // Fetch uploaded products from hardik_products DB table
+      const { data: dbProducts } = await supabase.from('hardik_products').select('*');
+      
+      zip.file('products_catalog.json', JSON.stringify(dbProducts || [], null, 2));
+
+      const imgFolder = zip.folder('product_images');
+      let count = 0;
+
+      if (dbProducts && dbProducts.length > 0) {
+        for (let i = 0; i < dbProducts.length; i++) {
+          const p = dbProducts[i];
+          const imgUrl = p.image_url || p.url;
+          if (imgUrl) {
+            try {
+              const res = await fetch(imgUrl);
+              if (res.ok) {
+                const blob = await res.blob();
+                const ext = imgUrl.includes('.png') ? 'png' : imgUrl.includes('.jpeg') ? 'jpeg' : 'jpg';
+                const cleanTitle = (p.title || 'item').replace(/[^a-zA-Z0-9_-]/g, '_');
+                const fileName = `${p.category || 'ALL'}_${cleanTitle}_${i + 1}.${ext}`;
+                imgFolder.file(fileName, blob);
+                count++;
+              }
+            } catch (err) {
+              console.warn('Failed to fetch image:', imgUrl, err);
+            }
+          }
+        }
+      }
+
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      const downloadUrl = URL.createObjectURL(zipBlob);
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = `Hardik_Jewellers_Products_${new Date().toISOString().slice(0, 10)}.zip`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(downloadUrl);
+
+      alert(`✅ Products ZIP Export Complete! Exported ${count} images & catalog data.`);
+    } catch (err) {
+      console.error(err);
+      alert('Export failed: ' + err.message);
+    } finally {
+      setIsExportingZip(false);
+    }
+  };
 
   const handleSendPushAlert = async (e) => {
     e.preventDefault();
@@ -334,6 +390,18 @@ export default function AdminDashboard() {
                 {sendingAlert ? 'Broadcasting...' : 'Broadcast to All'}
               </button>
             </form>
+          </div>
+
+          <div style={{ flex: 1, minWidth: '300px' }}>
+            <h3 style={{ color: 'var(--royal-gold)', fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', marginBottom: '15px' }}>Export Product Catalog</h3>
+            <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '12px' }}>Download a .zip package of all product images & catalog metadata.</p>
+            <button 
+              onClick={handleExportProductsZip} 
+              disabled={isExportingZip} 
+              style={{ padding: '12px 20px', background: '#2563eb', color: '#fff', border: 'none', fontWeight: 'bold', textTransform: 'uppercase', cursor: isExportingZip ? 'not-allowed' : 'pointer', borderRadius: '4px', width: '100%' }}
+            >
+              {isExportingZip ? 'Packing ZIP...' : '📦 Export All Products ZIP'}
+            </button>
           </div>
         </div>
 
