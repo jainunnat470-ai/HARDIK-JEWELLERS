@@ -1264,6 +1264,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lightboxProduct, setLightboxProduct] = useState(null);
   const [dbProducts, setDbProducts] = useState([]);
+  const [isExportingZip, setIsExportingZip] = useState(false);
   
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isIosHelpOpen, setIsIosHelpOpen] = useState(false);
@@ -1744,6 +1745,74 @@ export default function Home() {
       alert("Error uploading product: " + err.message);
     } finally {
       setIsUploading(false);
+    }
+  };
+
+  const handleExportProductsZip = async () => {
+    setIsExportingZip(true);
+    try {
+      const JSZip = (await import('jszip')).default;
+      const zip = new JSZip();
+
+      // Combine DB uploaded products & static products
+      const { data: pData } = await supabase.from('hardik_products').select('*');
+      const dbProds = pData || [];
+
+      const combinedExport = [
+        ...dbProds.map(p => ({
+          id: p.id,
+          title: p.title,
+          category: p.category,
+          subCategory: p.sub_category,
+          earringType: p.earring_type,
+          purity: p.purity,
+          weight: p.weight,
+          url: p.image_url
+        })),
+        ...allProducts
+      ];
+
+      // Add catalog JSON file
+      zip.file('catalog_info.json', JSON.stringify(combinedExport, null, 2));
+
+      const imgFolder = zip.folder('product_images');
+      let successCount = 0;
+
+      for (let i = 0; i < combinedExport.length; i++) {
+        const prod = combinedExport[i];
+        if (prod.url) {
+          try {
+            const res = await fetch(prod.url);
+            if (res.ok) {
+              const blob = await res.blob();
+              const ext = prod.url.includes('.png') ? 'png' : prod.url.includes('.jpeg') ? 'jpeg' : 'jpg';
+              const cleanTitle = (prod.title || 'product').replace(/[^a-zA-Z0-9_-]/g, '_');
+              const fileName = `${prod.category || 'ALL'}_${cleanTitle}_${i + 1}.${ext}`;
+              imgFolder.file(fileName, blob);
+              successCount++;
+            }
+          } catch (e) {
+            console.warn('Image fetch failed:', prod.url, e);
+          }
+        }
+      }
+
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      const downloadUrl = URL.createObjectURL(zipBlob);
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = `Hardik_Jewellers_Products_${new Date().toISOString().slice(0, 10)}.zip`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(downloadUrl);
+
+      alert(`✅ Products ZIP Export Complete! Exported ${successCount} product images & catalog details.`);
+    } catch (err) {
+      console.error('ZIP Export Error:', err);
+      alert('Export failed: ' + err.message);
+    } finally {
+      setIsExportingZip(false);
     }
   };
 
@@ -3602,6 +3671,22 @@ export default function Home() {
                   {isUploading ? 'UPLOADING...' : 'UPLOAD PRODUCT'}
                 </button>
               </form>
+
+              <div style={{ marginTop: '24px', paddingTop: '24px', borderTop: '1px dashed var(--royal-gold)', textAlign: 'center' }}>
+                <h4 style={{ color: 'white', marginBottom: '12px', fontSize: '14px', letterSpacing: '2px' }}>EXPORT PRODUCT CATALOG</h4>
+                <button 
+                  type="button" 
+                  onClick={handleExportProductsZip} 
+                  disabled={isExportingZip}
+                  className="admin-submit-btn"
+                  style={{ background: '#2563eb', color: '#ffffff', fontWeight: 'bold' }}
+                >
+                  {isExportingZip ? 'PACKING ZIP...' : '📦 EXPORT ALL PRODUCTS (.ZIP)'}
+                </button>
+                <p style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '8px' }}>
+                  (Downloads a .zip folder containing all product images & catalog metadata)
+                </p>
+              </div>
 
               <div style={{ marginTop: '24px', paddingTop: '24px', borderTop: '1px dashed var(--royal-gold)', textAlign: 'center' }}>
                   <h4 style={{ color: 'white', marginBottom: '12px', fontSize: '14px', letterSpacing: '2px' }}>HARVEST SCHEME SETTINGS</h4>
