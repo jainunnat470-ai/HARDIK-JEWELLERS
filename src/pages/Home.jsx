@@ -1836,7 +1836,26 @@ export default function Home() {
     setGoldRates(newRates);
 
     try {
-      const { error } = await supabase.from('hardik_rates').update(newRates).eq('id', 1);
+      // 1. Check existing rows
+      const { data: existingRows } = await supabase.from('hardik_rates').select('id').limit(1);
+      let error;
+
+      const ratePayload = {
+        gold24k: Number(temp24k),
+        gold22k: Number(temp22k),
+        gold18k: Number(temp18k),
+        silver: Number(tempSilver)
+      };
+
+      if (existingRows && existingRows.length > 0) {
+        const firstId = existingRows[0].id;
+        const res = await supabase.from('hardik_rates').update(ratePayload).eq('id', firstId);
+        error = res.error;
+      } else {
+        const res = await supabase.from('hardik_rates').insert([ratePayload]);
+        error = res.error;
+      }
+
       if (error) {
         console.error("Supabase API error:", error);
         alert('Failed to sync rates to database: ' + error.message);
