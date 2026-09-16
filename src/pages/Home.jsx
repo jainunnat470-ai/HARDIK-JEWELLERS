@@ -1787,9 +1787,9 @@ export default function Home() {
   // Load public rates from Supabase on startup
   useEffect(() => {
     const fetchRatesAndProducts = async () => {
-      const { data, error } = await supabase.from('hardik_rates').select('*').eq('id', 1).single();
-      if (data && !error) {
-        setGoldRates(data);
+      const { data, error } = await supabase.from('hardik_rates').select('*').order('id', { ascending: false }).limit(1);
+      if (data && data.length > 0 && !error) {
+        setGoldRates(data[0]);
       } else {
         console.error("Error fetching live public rates:", error);
       }
@@ -2040,8 +2040,8 @@ export default function Home() {
     setGoldRates(newRates);
 
     try {
-      // 1. Check existing rows
-      const { data: existingRows } = await supabase.from('hardik_rates').select('id').limit(1);
+      // 1. Check all existing rows
+      const { data: existingRows } = await supabase.from('hardik_rates').select('id');
       let error;
 
       const ratePayload = {
@@ -2052,9 +2052,10 @@ export default function Home() {
       };
 
       if (existingRows && existingRows.length > 0) {
-        const firstId = existingRows[0].id;
-        const res = await supabase.from('hardik_rates').update(ratePayload).eq('id', firstId);
-        error = res.error;
+        for (const row of existingRows) {
+          const res = await supabase.from('hardik_rates').update(ratePayload).eq('id', row.id);
+          if (res.error) error = res.error;
+        }
       } else {
         const res = await supabase.from('hardik_rates').insert([ratePayload]);
         error = res.error;
