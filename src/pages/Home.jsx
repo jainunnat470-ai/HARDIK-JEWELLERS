@@ -1823,19 +1823,39 @@ export default function Home() {
         console.error("Error fetching live public rates:", error);
       }
       
-      const { data: pData, error: pError } = await supabase.from('hardik_products').select('*').order('created_at', { ascending: false });
-      if (pData && !pError) {
-        setDbProducts(pData.map(p => ({
-          id: p.id,
-          title: p.title,
-          category: p.category,
-          subCategory: p.sub_category,
-          earringType: p.earring_type,
-          purity: p.purity,
-          weight: p.weight,
-          url: p.image_url
-        })));
+      let remoteProds = [];
+      try {
+        const { data: pData, error: pError } = await supabase.from('hardik_products').select('*').order('created_at', { ascending: false });
+        if (pData && !pError) {
+          remoteProds = pData.map(p => ({
+            id: p.id,
+            title: p.title,
+            category: p.category,
+            subCategory: p.sub_category,
+            earringType: p.earring_type,
+            purity: p.purity,
+            weight: p.weight,
+            url: p.image_url
+          }));
+        }
+      } catch (e) {
+        console.warn("hardik_products table query bypassed:", e);
       }
+
+      let localProds = [];
+      try {
+        localProds = JSON.parse(localStorage.getItem('HARDIK_custom_products') || '[]');
+      } catch (e) {
+        localProds = [];
+      }
+
+      const mergedMap = new Map();
+      [...remoteProds, ...localProds].forEach(p => {
+        if (p && p.id && !mergedMap.has(p.id)) {
+          mergedMap.set(p.id, p);
+        }
+      });
+      setDbProducts(Array.from(mergedMap.values()));
     };
     fetchRatesAndProducts();
   }, []);
