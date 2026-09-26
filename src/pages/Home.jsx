@@ -1764,13 +1764,14 @@ export default function Home() {
   // Live Gold Rates & Admin Panel State
   const [goldRates, setGoldRates] = useState(() => {
     const saved = localStorage.getItem('HARDIK_gold_rates');
-    return saved ? JSON.parse(saved) : {
+    return saved ? { hide24k: true, ...JSON.parse(saved) } : {
       gold24k: 15500,
       gold22k: 14000,
       gold18k: 5740,
       silver: 235,
+      hide24k: true,
       lastUpdated: new Date().toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true }),
-      updatedAt: 1716700000000 // default baseline timestamp
+      updatedAt: 1716700000000
     };
   });
 
@@ -1796,10 +1797,11 @@ export default function Home() {
   const [errorMsg, setErrorMsg] = useState('');
   
   // Rate Edit Form States
-  const [temp24k, setTemp24k] = useState(goldRates.gold24k);
-  const [temp22k, setTemp22k] = useState(goldRates.gold22k);
-  const [temp18k, setTemp18k] = useState(goldRates.gold18k);
-  const [tempSilver, setTempSilver] = useState(goldRates.silver);
+  const [temp24k, setTemp24k] = useState(goldRates.gold24k || 15500);
+  const [temp22k, setTemp22k] = useState(goldRates.gold22k || 14000);
+  const [temp18k, setTemp18k] = useState(goldRates.gold18k || 5740);
+  const [tempSilver, setTempSilver] = useState(goldRates.silver || 235);
+  const [tempHide24k, setTempHide24k] = useState(goldRates.hide24k !== false);
 
   // Product Upload States
   const [upTitle, setUpTitle] = useState('');
@@ -1816,7 +1818,7 @@ export default function Home() {
     const fetchRatesAndProducts = async () => {
       const { data, error } = await supabase.from('hardik_rates').select('*').order('id', { ascending: false }).limit(1);
       if (data && data.length > 0 && !error) {
-        setGoldRates(data[0]);
+        setGoldRates(prev => ({ hide24k: true, ...prev, ...data[0] }));
       } else {
         console.error("Error fetching live public rates:", error);
       }
@@ -1908,10 +1910,11 @@ export default function Home() {
     if (passcode === envPasscode || passcode === 'arka@12') {
       setIsAuthed(true);
       setErrorMsg('');
-      setTemp24k(goldRates.gold24k);
-      setTemp22k(goldRates.gold22k);
-      setTemp18k(goldRates.gold18k);
-      setTempSilver(goldRates.silver);
+      setTemp24k(goldRates.gold24k || 15500);
+      setTemp22k(goldRates.gold22k || 14000);
+      setTemp18k(goldRates.gold18k || 5740);
+      setTempSilver(goldRates.silver || 235);
+      setTempHide24k(goldRates.hide24k !== false);
     } else {
       setErrorMsg('Invalid Passcode');
     }
@@ -2057,14 +2060,17 @@ export default function Home() {
       hour12: true 
     });
     const newRates = {
+      ...goldRates,
       gold24k: Number(temp24k),
       gold22k: Number(temp22k),
       gold18k: Number(temp18k),
       silver: Number(tempSilver),
+      hide24k: tempHide24k,
       lastUpdated: now
     };
 
     setGoldRates(newRates);
+    localStorage.setItem('HARDIK_gold_rates', JSON.stringify(newRates));
 
     try {
       const ratePayload = {
@@ -2073,9 +2079,16 @@ export default function Home() {
         gold18k: Number(temp18k),
         silver: Number(tempSilver)
       };
+      if (typeof tempHide24k === 'boolean') {
+        ratePayload.hide24k = tempHide24k;
+      }
+      let resUpdate = await supabase.from('hardik_rates').update(ratePayload).gt('id', 0);
+      if (resUpdate.error && resUpdate.error.message.includes('hide24k')) {
+        delete ratePayload.hide24k;
+        resUpdate = await supabase.from('hardik_rates').update(ratePayload).gt('id', 0);
+      }
 
-      // Update all existing rate rows directly
-      const resUpdate = await supabase.from('hardik_rates').update(ratePayload).gt('id', 0);
+      
       let error = resUpdate.error;
 
       if (error) {
@@ -2135,6 +2148,12 @@ export default function Home() {
             </span>
             <span className="ticker-item" style={{ fontWeight: 700, color: '#ffffff' }}>HARDIK JEWELLERS:</span>
 
+            {!goldRates.hide24k && goldRates.gold24k > 0 && (
+              <>
+                <span className="ticker-item">24K GOLD: <strong>₹{goldRates.gold24k}/g</strong></span>
+                <span className="ticker-item-separator"> | </span>
+              </>
+            )}
             <span className="ticker-item">22K GOLD: <strong>₹{goldRates.gold22k}/g</strong></span>
             <span className="ticker-item-separator"> | </span>
             <span className="ticker-item">18K GOLD: <strong>₹{goldRates.gold18k}/g</strong></span>
@@ -2146,6 +2165,12 @@ export default function Home() {
             {/* Duplicated loop for infinite scrolling marquee */}
             <span className="ticker-item-separator" style={{ margin: '0 20px' }}> | </span>
 
+            {!goldRates.hide24k && goldRates.gold24k > 0 && (
+              <>
+                <span className="ticker-item">24K GOLD: <strong>₹{goldRates.gold24k}/g</strong></span>
+                <span className="ticker-item-separator"> | </span>
+              </>
+            )}
             <span className="ticker-item">22K GOLD: <strong>₹{goldRates.gold22k}/g</strong></span>
             <span className="ticker-item-separator"> | </span>
             <span className="ticker-item">18K GOLD: <strong>₹{goldRates.gold18k}/g</strong></span>
@@ -2375,7 +2400,15 @@ export default function Home() {
             justifyContent: 'center',
             gap: '24px'
           }}>
-            {/* 24K Gold - hidden */}
+            {/* 24K Gold */}
+            {!goldRates.hide24k && goldRates.gold24k > 0 && (
+              <div style={{ flex: '1 1 200px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px 16px', background: '#fff', borderRadius: '12px', border: '1px solid rgba(212, 138, 148, 0.25)', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
+                <div style={{ fontSize: '12px', color: 'var(--text-gray)', fontWeight: '700', letterSpacing: '1px', textAlign: 'center', marginBottom: '12px' }}>24K GOLD <span style={{fontSize: '10px', fontWeight: '500', opacity: 0.8}}>(99.9%)</span></div>
+                <div style={{ fontSize: '22px', fontWeight: '800', color: 'var(--royal-gold)', textAlign: 'center', display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                  ₹{goldRates.gold24k} <span style={{fontSize: '13px', fontWeight: '500', color: 'var(--text-gray)'}}>/ gm</span>
+                </div>
+              </div>
+            )}
             
             {/* 22K Gold */}
             <div style={{ flex: '1 1 200px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px 16px', background: '#fff', borderRadius: '12px', border: '1px solid rgba(212, 138, 148, 0.25)', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
@@ -3806,6 +3839,17 @@ export default function Home() {
 
 
                 <div className="admin-form-group">
+                  <label className="admin-form-label">24K Gold Rate (₹ per gram)</label>
+                  <input 
+                    type="number" 
+                    required 
+                    className="admin-form-input" 
+                    value={temp24k}
+                    onChange={(e) => setTemp24k(e.target.value)}
+                  />
+                </div>
+
+                <div className="admin-form-group">
                   <label className="admin-form-label">22K Gold Rate (₹ per gram)</label>
                   <input 
                     type="number" 
@@ -3836,6 +3880,19 @@ export default function Home() {
                     value={tempSilver}
                     onChange={(e) => setTempSilver(e.target.value)}
                   />
+                </div>
+
+                <div className="admin-form-group" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '12px', marginBottom: '16px' }}>
+                  <input 
+                    type="checkbox" 
+                    id="hide24kCheck"
+                    checked={tempHide24k}
+                    onChange={(e) => setTempHide24k(e.target.checked)}
+                    style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: 'var(--royal-gold)' }}
+                  />
+                  <label htmlFor="hide24kCheck" style={{ color: '#ffffff', fontSize: '13px', cursor: 'pointer', userSelect: 'none' }}>
+                    Hide 24K Gold Rate from public display (Ticker & Live Rates Card)
+                  </label>
                 </div>
 
                 <button type="submit" className="admin-submit-btn">PUBLISH LIVE RATES PUBLICLY</button>
