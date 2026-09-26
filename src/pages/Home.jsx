@@ -41,7 +41,24 @@ const bestSellerImages = [
 ];
 
 // Bangles - all images from ZIPBANGLES_NEW
-const bangleImages = [];
+const bangleImages = [
+  { id: "bangle-wc1", url: "/assets/ZIPWEDDING_NEW/wc1.jpeg", title: "BANGLES wc1", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-wc2", url: "/assets/ZIPWEDDING_NEW/wc2.jpeg", title: "BANGLES wc2", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-wc3", url: "/assets/ZIPWEDDING_NEW/wc3.jpeg", title: "BANGLES wc3", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-wc4", url: "/assets/ZIPWEDDING_NEW/wc4.jpeg", title: "BANGLES wc4", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-wc5", url: "/assets/ZIPWEDDING_NEW/wc5.jpeg", title: "BANGLES wc5", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-wc6", url: "/assets/ZIPWEDDING_NEW/wc6.jpeg", title: "BANGLES wc6", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-wc7", url: "/assets/ZIPWEDDING_NEW/wc7.jpeg", title: "BANGLES wc7", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-wc8", url: "/assets/ZIPWEDDING_NEW/wc8.jpeg", title: "BANGLES wc8", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-ws_new_1", url: "/assets/ZIPWEDDING_NEW/ws_new_1.jpg", title: "BANGLES ws_new_1", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-ws_new_2", url: "/assets/ZIPWEDDING_NEW/ws_new_2.jpg", title: "BANGLES ws_new_2", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-ws_new_3", url: "/assets/ZIPWEDDING_NEW/ws_new_3.jpg", title: "BANGLES ws_new_3", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-ws_new_4", url: "/assets/ZIPWEDDING_NEW/ws_new_4.jpg", title: "BANGLES ws_new_4", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-ws_new_5", url: "/assets/ZIPWEDDING_NEW/ws_new_5.jpg", title: "BANGLES ws_new_5", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-ws_new_6", url: "/assets/ZIPWEDDING_NEW/ws_new_6.jpg", title: "BANGLES ws_new_6", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-ws_new_7", url: "/assets/ZIPWEDDING_NEW/ws_new_7.jpg", title: "BANGLES ws_new_7", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
+  { id: "bangle-ws_new_8", url: "/assets/ZIPWEDDING_NEW/ws_new_8.jpg", title: "BANGLES ws_new_8", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" }
+];
 
 // Gents Bracelets - all images from ZIPGENTSBRACELET
 const gentsBraceletImages = [
@@ -1378,7 +1395,7 @@ const categories = ['ALL', 'GENTS', 'LADIES', 'WEDDING SET', 'SILVER COLLECTION'
 // Sub-categories per main collection
 const subCategories = {
   'GENTS': ['ALL', 'RINGS', 'CHAINS', 'BRACELETS', 'LOCKETS'],
-  'LADIES': ['ALL', 'SHORT MANGALSUTRA', 'LONG MANGALSUTRA', 'RINGS', 'NECKLACES', 'BRACELETS', 'EARRINGS'],
+  'LADIES': ['ALL', 'BANGLES', 'SHORT MANGALSUTRA', 'LONG MANGALSUTRA', 'RINGS', 'NECKLACES', 'BRACELETS', 'EARRINGS'],
   'WEDDING SET': ['ALL'],
   'SILVER COLLECTION': ['ALL', 'SILVER CHAIN', 'SILVER BRACELETS', 'PAYAL', 'CHALLA', 'SILVER UTENSILS', 'SILVER MANGALSUTRA']
 };
