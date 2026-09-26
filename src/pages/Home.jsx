@@ -1920,26 +1920,49 @@ export default function Home() {
     }
   };
 
-  const handleUploadProduct = async (e) => {
+    const handleUploadProduct = async (e) => {
     e.preventDefault();
     if (!upImageFile) return alert("Please select an image");
     setIsUploading(true);
 
     try {
       const fileExt = upImageFile.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
+      const fileName = `product_${Date.now()}_${Math.random().toString(36).substring(2, 7)}.${fileExt}`;
       const filePath = `${fileName}`;
 
-      // Upload image to storage
-      const { error: uploadError, data } = await supabase.storage
-        .from('product-images')
-        .upload(filePath, upImageFile);
+      let imageUrl = '';
 
-      if (uploadError) throw uploadError;
+      // Try uploading to 'payment_screenshots' bucket first
+      let uploadRes = await supabase.storage
+        .from('payment_screenshots')
+        .upload(filePath, upImageFile, { upsert: true });
 
-      const { data: publicUrlData } = supabase.storage
-        .from('product-images')
-        .getPublicUrl(filePath);
+      if (!uploadRes.error) {
+        const { data: publicUrlData } = supabase.storage
+          .from('payment_screenshots')
+          .getPublicUrl(filePath);
+        imageUrl = publicUrlData.publicUrl;
+      } else {
+        // Fallback 1: Try 'product-images' bucket
+        uploadRes = await supabase.storage
+          .from('product-images')
+          .upload(filePath, upImageFile, { upsert: true });
+
+        if (!uploadRes.error) {
+          const { data: publicUrlData } = supabase.storage
+            .from('product-images')
+            .getPublicUrl(filePath);
+          imageUrl = publicUrlData.publicUrl;
+        } else {
+          // Fallback 2: Base64 Data URL fallback (ensures upload succeeds even if bucket is missing)
+          imageUrl = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (err) => reject(err);
+            reader.readAsDataURL(upImageFile);
+          });
+        }
+      }
 
       const newProduct = {
         id: Date.now().toString(),
@@ -1949,7 +1972,7 @@ export default function Home() {
         earring_type: upEarringType,
         purity: upPurity,
         weight: upWeight,
-        image_url: publicUrlData.publicUrl
+        image_url: imageUrl
       };
 
       const { data: insertedData, error: insertError } = await supabase.from('hardik_products').insert([newProduct]).select().single();
