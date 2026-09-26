@@ -42,22 +42,32 @@ const bestSellerImages = [
 
 // Bangles - all images from ZIPBANGLES_NEW
 const bangleImages = [
-  { id: "bangle-wc1", url: "/assets/ZIPWEDDING_NEW/wc1.jpeg", title: "BANGLES wc1", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-wc2", url: "/assets/ZIPWEDDING_NEW/wc2.jpeg", title: "BANGLES wc2", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-wc3", url: "/assets/ZIPWEDDING_NEW/wc3.jpeg", title: "BANGLES wc3", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-wc4", url: "/assets/ZIPWEDDING_NEW/wc4.jpeg", title: "BANGLES wc4", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-wc5", url: "/assets/ZIPWEDDING_NEW/wc5.jpeg", title: "BANGLES wc5", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-wc6", url: "/assets/ZIPWEDDING_NEW/wc6.jpeg", title: "BANGLES wc6", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-wc7", url: "/assets/ZIPWEDDING_NEW/wc7.jpeg", title: "BANGLES wc7", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-wc8", url: "/assets/ZIPWEDDING_NEW/wc8.jpeg", title: "BANGLES wc8", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-ws_new_1", url: "/assets/ZIPWEDDING_NEW/ws_new_1.jpg", title: "BANGLES ws_new_1", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-ws_new_2", url: "/assets/ZIPWEDDING_NEW/ws_new_2.jpg", title: "BANGLES ws_new_2", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-ws_new_3", url: "/assets/ZIPWEDDING_NEW/ws_new_3.jpg", title: "BANGLES ws_new_3", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-ws_new_4", url: "/assets/ZIPWEDDING_NEW/ws_new_4.jpg", title: "BANGLES ws_new_4", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-ws_new_5", url: "/assets/ZIPWEDDING_NEW/ws_new_5.jpg", title: "BANGLES ws_new_5", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-ws_new_6", url: "/assets/ZIPWEDDING_NEW/ws_new_6.jpg", title: "BANGLES ws_new_6", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-ws_new_7", url: "/assets/ZIPWEDDING_NEW/ws_new_7.jpg", title: "BANGLES ws_new_7", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" },
-  { id: "bangle-ws_new_8", url: "/assets/ZIPWEDDING_NEW/ws_new_8.jpg", title: "BANGLES ws_new_8", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" }
+  { id: "bangle-gbn10", url: "/assets/ZIPBANGLES_NEW/GBN10_25.310.png", title: "Gold Bangle GBN10", category: "LADIES", subCategory: "BANGLES", weight: "25.31 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn11", url: "/assets/ZIPBANGLES_NEW/GBN11_37.960.png", title: "Gold Bangle GBN11", category: "LADIES", subCategory: "BANGLES", weight: "37.96 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn12", url: "/assets/ZIPBANGLES_NEW/GBN12_28.450.png", title: "Gold Bangle GBN12", category: "LADIES", subCategory: "BANGLES", weight: "28.45 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn13", url: "/assets/ZIPBANGLES_NEW/GBN13_50.140.png", title: "Gold Bangle GBN13", category: "LADIES", subCategory: "BANGLES", weight: "50.14 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn18", url: "/assets/ZIPBANGLES_NEW/GBN18_20.510.png", title: "Gold Bangle GBN18", category: "LADIES", subCategory: "BANGLES", weight: "20.51 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn1", url: "/assets/ZIPBANGLES_NEW/GBN1_20.840.png", title: "Gold Bangle GBN1", category: "LADIES", subCategory: "BANGLES", weight: "20.84 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn21", url: "/assets/ZIPBANGLES_NEW/GBN21_33.040.png", title: "Gold Bangle GBN21", category: "LADIES", subCategory: "BANGLES", weight: "33.04 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn22", url: "/assets/ZIPBANGLES_NEW/GBN22_24.930.png", title: "Gold Bangle GBN22", category: "LADIES", subCategory: "BANGLES", weight: "24.93 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn25", url: "/assets/ZIPBANGLES_NEW/GBN25_31.710.png", title: "Gold Bangle GBN25", category: "LADIES", subCategory: "BANGLES", weight: "31.71 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn26", url: "/assets/ZIPBANGLES_NEW/GBN26_24.100.png", title: "Gold Bangle GBN26", category: "LADIES", subCategory: "BANGLES", weight: "24.10 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn27", url: "/assets/ZIPBANGLES_NEW/GBN27_21.440.png", title: "Gold Bangle GBN27", category: "LADIES", subCategory: "BANGLES", weight: "21.44 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn29", url: "/assets/ZIPBANGLES_NEW/GBN29_35.980.png", title: "Gold Bangle GBN29", category: "LADIES", subCategory: "BANGLES", weight: "35.98 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn2", url: "/assets/ZIPBANGLES_NEW/GBN2_27.020.jpeg", title: "Gold Bangle GBN2", category: "LADIES", subCategory: "BANGLES", weight: "27.02 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn30", url: "/assets/ZIPBANGLES_NEW/GBN30_25.950.png", title: "Gold Bangle GBN30", category: "LADIES", subCategory: "BANGLES", weight: "25.95 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn31", url: "/assets/ZIPBANGLES_NEW/GBN31_44.200.png", title: "Gold Bangle GBN31", category: "LADIES", subCategory: "BANGLES", weight: "44.20 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn32", url: "/assets/ZIPBANGLES_NEW/GBN32_23.140.png", title: "Gold Bangle GBN32", category: "LADIES", subCategory: "BANGLES", weight: "23.14 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn33", url: "/assets/ZIPBANGLES_NEW/GBN33_22.230.png", title: "Gold Bangle GBN33", category: "LADIES", subCategory: "BANGLES", weight: "22.23 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn37", url: "/assets/ZIPBANGLES_NEW/GBN37_35.090.png", title: "Gold Bangle GBN37", category: "LADIES", subCategory: "BANGLES", weight: "35.09 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn38", url: "/assets/ZIPBANGLES_NEW/GBN38_27.200.png", title: "Gold Bangle GBN38", category: "LADIES", subCategory: "BANGLES", weight: "27.20 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn3", url: "/assets/ZIPBANGLES_NEW/GBN3_24.230.png", title: "Gold Bangle GBN3", category: "LADIES", subCategory: "BANGLES", weight: "24.23 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn3", url: "/assets/ZIPBANGLES_NEW/GBN3_25.490.png", title: "Gold Bangle GBN3", category: "LADIES", subCategory: "BANGLES", weight: "25.49 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn41", url: "/assets/ZIPBANGLES_NEW/GBN41_35.250.png", title: "Gold Bangle GBN41", category: "LADIES", subCategory: "BANGLES", weight: "35.25 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn43", url: "/assets/ZIPBANGLES_NEW/GBN43_33.840.png", title: "Gold Bangle GBN43", category: "LADIES", subCategory: "BANGLES", weight: "33.84 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn46", url: "/assets/ZIPBANGLES_NEW/GBN46_33.920.png", title: "Gold Bangle GBN46", category: "LADIES", subCategory: "BANGLES", weight: "33.92 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn7", url: "/assets/ZIPBANGLES_NEW/GBN7_16.170.png", title: "Gold Bangle GBN7", category: "LADIES", subCategory: "BANGLES", weight: "16.17 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn8", url: "/assets/ZIPBANGLES_NEW/GBN8_30.810.png", title: "Gold Bangle GBN8", category: "LADIES", subCategory: "BANGLES", weight: "30.81 Grams", purity: "22K Hallmarked Gold" }
 ];
 
 // Gents Bracelets - all images from ZIPGENTSBRACELET
