@@ -49,7 +49,6 @@ const bangleImages = [
   { id: "bangle-gbn18", url: "/assets/ZIPBANGLES_NEW/GBN18_20.510.png", title: "Gold Bangle GBN18", category: "LADIES", subCategory: "BANGLES", weight: "20.51 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn1", url: "/assets/ZIPBANGLES_NEW/GBN1_20.840.png", title: "Gold Bangle GBN1", category: "LADIES", subCategory: "BANGLES", weight: "20.84 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn21", url: "/assets/ZIPBANGLES_NEW/GBN21_33.040.png", title: "Gold Bangle GBN21", category: "LADIES", subCategory: "BANGLES", weight: "33.04 Grams", purity: "22K Hallmarked Gold" },
-  { id: "bangle-gbn22", url: "/assets/ZIPBANGLES_NEW/GBN22_24.930.png", title: "Gold Bangle GBN22", category: "LADIES", subCategory: "BANGLES", weight: "24.93 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn25", url: "/assets/ZIPBANGLES_NEW/GBN25_31.710.png", title: "Gold Bangle GBN25", category: "LADIES", subCategory: "BANGLES", weight: "31.71 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn26", url: "/assets/ZIPBANGLES_NEW/GBN26_24.100.png", title: "Gold Bangle GBN26", category: "LADIES", subCategory: "BANGLES", weight: "24.10 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn27", url: "/assets/ZIPBANGLES_NEW/GBN27_21.440.png", title: "Gold Bangle GBN27", category: "LADIES", subCategory: "BANGLES", weight: "21.44 Grams", purity: "22K Hallmarked Gold" },
