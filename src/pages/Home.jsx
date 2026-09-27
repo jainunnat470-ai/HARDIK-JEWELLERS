@@ -1844,6 +1844,8 @@ export default function Home() {
       let localProds = [];
       try {
         localProds = JSON.parse(localStorage.getItem('HARDIK_custom_products') || '[]');
+        localProds = localProds.filter(p => p && !(p.title && (p.title.includes('GBN22') || p.title.includes('Bangle GBN22'))) && !(p.id && String(p.id).toLowerCase().includes('gbn22')));
+        localStorage.setItem('HARDIK_custom_products', JSON.stringify(localProds));
       } catch (e) {
         localProds = [];
       }
