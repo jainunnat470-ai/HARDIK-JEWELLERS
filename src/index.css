@@ -1,5 +1,5 @@
 :root {
-  /* Royal Heritage Ivory & Gold Theme - HARDIK JEWELLERS Jammu */
+  /* Royal Heritage Ivory & Gold Theme - LAXMI JEWELLERS Jammu */
   --royal-gold: #d48a94;
   --royal-gold-hover: #b26872;
   --royal-gold-light: rgba(212, 138, 148, 0.12);
@@ -2010,14 +2010,14 @@ html, body {
 @media (max-width: 768px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    gap: 16px !important;
   }
 }
 
 @media (max-width: 480px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 16px !important;
   }
 }
 
@@ -2266,7 +2266,7 @@ html, body {
 
 @media (max-width: 768px) {
   .product-info-wrap {
-    padding: 8px 10px !important;
+    padding: 12px 14px !important;
     gap: 6px !important;
   }
   .product-card-title {
@@ -2406,7 +2406,7 @@ html, body {
 
 @media (max-width: 768px) {
   .product-info-wrap {
-    padding: 8px 10px !important;
+    padding: 12px 14px !important;
     gap: 6px !important;
   }
   .product-card-title {
