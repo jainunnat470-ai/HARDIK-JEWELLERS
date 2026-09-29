@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import heic2any from 'heic2any';
 import { 
   Menu, X, Phone, MapPin, Clock, 
   ShieldCheck, Heart, Award, Share2,
@@ -60,8 +61,8 @@ const bangleImages = [
   { id: "bangle-gbn33", url: "/assets/ZIPBANGLES_NEW/GBN33_22.230.png", title: "Gold Bangle GBN33", category: "LADIES", subCategory: "BANGLES", weight: "22.23 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn37", url: "/assets/ZIPBANGLES_NEW/GBN37_35.090.png", title: "Gold Bangle GBN37", category: "LADIES", subCategory: "BANGLES", weight: "35.09 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn38", url: "/assets/ZIPBANGLES_NEW/GBN38_27.200.png", title: "Gold Bangle GBN38", category: "LADIES", subCategory: "BANGLES", weight: "27.20 Grams", purity: "22K Hallmarked Gold" },
-  { id: "bangle-gbn3", url: "/assets/ZIPBANGLES_NEW/GBN3_24.230.png", title: "Gold Bangle GBN3", category: "LADIES", subCategory: "BANGLES", weight: "24.23 Grams", purity: "22K Hallmarked Gold" },
-  { id: "bangle-gbn3", url: "/assets/ZIPBANGLES_NEW/GBN3_25.490.png", title: "Gold Bangle GBN3", category: "LADIES", subCategory: "BANGLES", weight: "25.49 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn3-1", url: "/assets/ZIPBANGLES_NEW/GBN3_24.230.png", title: "Gold Bangle GBN3", category: "LADIES", subCategory: "BANGLES", weight: "24.23 Grams", purity: "22K Hallmarked Gold" },
+  { id: "bangle-gbn3-2", url: "/assets/ZIPBANGLES_NEW/GBN3_25.490.png", title: "Gold Bangle GBN3", category: "LADIES", subCategory: "BANGLES", weight: "25.49 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn41", url: "/assets/ZIPBANGLES_NEW/GBN41_35.250.png", title: "Gold Bangle GBN41", category: "LADIES", subCategory: "BANGLES", weight: "35.25 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn43", url: "/assets/ZIPBANGLES_NEW/GBN43_33.840.png", title: "Gold Bangle GBN43", category: "LADIES", subCategory: "BANGLES", weight: "33.84 Grams", purity: "22K Hallmarked Gold" },
   { id: "bangle-gbn46", url: "/assets/ZIPBANGLES_NEW/GBN46_33.920.png", title: "Gold Bangle GBN46", category: "LADIES", subCategory: "BANGLES", weight: "33.92 Grams", purity: "22K Hallmarked Gold" },
@@ -1422,6 +1423,7 @@ const marqueeCategories = [
 
 // Circular Category Definitions
 const circularCategories = [
+  { label: 'BANGLES', letter: 'B', cat: 'LADIES', sub: 'BANGLES' },
   { label: 'RINGS', letter: 'R', cat: 'LADIES', sub: 'RINGS' },
   { label: 'EARRINGS', letter: 'E', cat: 'LADIES', sub: 'EARRINGS' },
   { label: 'PENDANTS', letter: 'P', cat: 'GENTS', sub: 'LOCKETS' },
@@ -1488,7 +1490,7 @@ export default function Home() {
     setCatSlideIndex((prev) => (prev - 1 + 4) % 4);
   };
   const [activeCategory, setActiveCategory] = useState('LADIES');
-  const [activeSubCategory, setActiveSubCategory] = useState('RINGS');
+  const [activeSubCategory, setActiveSubCategory] = useState('BANGLES');
   const [activeEarringType, setActiveEarringType] = useState('ALL');
   const [visibleCount, setVisibleCount] = useState(16);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1811,6 +1813,39 @@ export default function Home() {
   const [upPurity, setUpPurity] = useState('');
   const [upImageFile, setUpImageFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [isConvertingHeic, setIsConvertingHeic] = useState(false);
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const isHeic = file.name.toLowerCase().endsWith('.heic') || 
+                   file.name.toLowerCase().endsWith('.heif') || 
+                   file.type.includes('heic') || 
+                   file.type.includes('heif');
+
+    if (isHeic) {
+      setIsConvertingHeic(true);
+      try {
+        const convertedBlob = await heic2any({
+          blob: file,
+          toType: 'image/jpeg',
+          quality: 0.85
+        });
+        const resultBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+        const newFileName = file.name.replace(/\.(heic|heif)$/i, '.jpg');
+        const convertedFile = new File([resultBlob], newFileName, { type: 'image/jpeg' });
+        setUpImageFile(convertedFile);
+      } catch (err) {
+        console.error("HEIC conversion error:", err);
+        alert("Could not convert HEIC photo. Please select a JPG or PNG image.");
+      } finally {
+        setIsConvertingHeic(false);
+      }
+    } else {
+      setUpImageFile(file);
+    }
+  };
 
   // Load public rates from Supabase on startup
   useEffect(() => {
@@ -1844,7 +1879,22 @@ export default function Home() {
       let localProds = [];
       try {
         localProds = JSON.parse(localStorage.getItem('HARDIK_custom_products') || '[]');
-        localProds = localProds.filter(p => p && !(p.title && (p.title.includes('GBN22') || p.title.includes('Bangle GBN22'))) && !(p.id && String(p.id).toLowerCase().includes('gbn22')));
+        localProds = localProds.map(p => {
+          if (p && p.title) {
+            const tUpper = p.title.toUpperCase();
+            if (tUpper.includes('BANGLE') || tUpper.includes('GBN')) {
+              p.subCategory = 'BANGLES';
+              p.sub_category = 'BANGLES';
+            } else if (tUpper.includes('SHORT MANGALSUTRA') || tUpper.includes('GMS')) {
+              p.subCategory = 'SHORT MANGALSUTRA';
+              p.sub_category = 'SHORT MANGALSUTRA';
+            } else if (tUpper.includes('LONG MANGALSUTRA') || tUpper.includes('GGT')) {
+              p.subCategory = 'LONG MANGALSUTRA';
+              p.sub_category = 'LONG MANGALSUTRA';
+            }
+          }
+          return p;
+        }).filter(p => p && !(p.title && (p.title.includes('GBN22') || p.title.includes('Bangle GBN22'))) && !(p.id && String(p.id).toLowerCase().includes('gbn22')));
         localStorage.setItem('HARDIK_custom_products', JSON.stringify(localProds));
       } catch (e) {
         localProds = [];
@@ -2201,7 +2251,18 @@ export default function Home() {
     if (activeCategory === 'ALL') return combinedProducts;
     let base = combinedProducts.filter(p => p.category === activeCategory);
     if (activeSubCategory !== 'ALL') {
-      base = base.filter(p => (p.subCategory || '').toUpperCase() === activeSubCategory);
+      base = base.filter(p => {
+        let sub = (p.subCategory || p.sub_category || '').trim().toUpperCase();
+        const titleUpper = (p.title || '').toUpperCase();
+        if (titleUpper.includes('BANGLE') || titleUpper.includes('GBN')) {
+          sub = 'BANGLES';
+        } else if (titleUpper.includes('SHORT MANGALSUTRA') || titleUpper.includes('GMS')) {
+          sub = 'SHORT MANGALSUTRA';
+        } else if (titleUpper.includes('LONG MANGALSUTRA') || titleUpper.includes('GGT')) {
+          sub = 'LONG MANGALSUTRA';
+        }
+        return sub === activeSubCategory;
+      });
     }
     // 3rd level: earring type filter
     if (activeSubCategory === 'EARRINGS' && activeEarringType !== 'ALL') {
@@ -4026,8 +4087,13 @@ export default function Home() {
                     padding: '24px', cursor: 'pointer', background: 'rgba(212, 138, 148, 0.05)',
                     transition: 'all 0.3s ease', position: 'relative', overflow: 'hidden', marginTop: '4px'
                   }}>
-                    <input type="file" accept="image/*" required style={{ display: 'none' }} onChange={e => setUpImageFile(e.target.files[0])} />
-                    {upImageFile ? (
+                    <input type="file" accept="image/*,.heic,.heif,image/heic,image/heif" required style={{ display: 'none' }} onChange={handleFileChange} />
+                    {isConvertingHeic ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+                        <div className="ping-dot"></div>
+                        <span style={{ fontSize: '12px', color: 'var(--royal-gold)', fontWeight: 'bold' }}>Converting iPhone HEIC Photo to JPEG...</span>
+                      </div>
+                    ) : upImageFile ? (
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                         <img src={URL.createObjectURL(upImageFile)} alt="Preview" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--royal-gold)' }} />
                         <span style={{ fontSize: '11px', color: 'var(--royal-gold)' }}>Change Image ({upImageFile.name})</span>
