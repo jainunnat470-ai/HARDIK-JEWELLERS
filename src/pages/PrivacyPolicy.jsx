@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
     <div style={{ padding: '60px 20px', maxWidth: '800px', margin: '0 auto', fontFamily: '"Inter", sans-serif', color: '#333' }}>
       <h1 style={{ color: 'var(--royal-gold)', fontFamily: '"Playfair Display", serif', fontSize: '2.5rem', marginBottom: '20px' }}>Privacy Policy</h1>
       <p style={{ lineHeight: '1.6', fontSize: '1.1rem' }}>
-        At Hardik Jewellers, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+        At Laxmi Jewellers, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
       </p>
       <h3 style={{ marginTop: '30px', color: 'var(--royal-gold)', fontFamily: '"Playfair Display", serif' }}>1. Information We Collect</h3>
       <p style={{ lineHeight: '1.6', fontSize: '1.1rem' }}>
