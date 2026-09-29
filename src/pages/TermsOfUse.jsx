@@ -9,7 +9,7 @@ export default function TermsOfUse() {
     <div style={{ padding: '60px 20px', maxWidth: '800px', margin: '0 auto', fontFamily: '"Inter", sans-serif', color: '#333' }}>
       <h1 style={{ color: 'var(--royal-gold)', fontFamily: '"Playfair Display", serif', fontSize: '2.5rem', marginBottom: '20px' }}>Terms of Use</h1>
       <p style={{ lineHeight: '1.6', fontSize: '1.1rem' }}>
-        Welcome to Hardik Jewellers. By accessing or using our website, you agree to comply with and be bound by these Terms of Use.
+        Welcome to Laxmi Jewellers. By accessing or using our website, you agree to comply with and be bound by these Terms of Use.
       </p>
       <h3 style={{ marginTop: '30px', color: 'var(--royal-gold)', fontFamily: '"Playfair Display", serif' }}>1. Acceptance of Terms</h3>
       <p style={{ lineHeight: '1.6', fontSize: '1.1rem' }}>
@@ -21,7 +21,7 @@ export default function TermsOfUse() {
       </p>
       <h3 style={{ marginTop: '30px', color: 'var(--royal-gold)', fontFamily: '"Playfair Display", serif' }}>3. Changes to Terms</h3>
       <p style={{ lineHeight: '1.6', fontSize: '1.1rem' }}>
-        Hardik Jewellers reserves the right to modify these Terms of Use at any time. We will notify you of any significant changes, and your continued use of our services constitutes acceptance of the updated terms.
+        Laxmi Jewellers reserves the right to modify these Terms of Use at any time. We will notify you of any significant changes, and your continued use of our services constitutes acceptance of the updated terms.
       </p>
     </div>
   );
