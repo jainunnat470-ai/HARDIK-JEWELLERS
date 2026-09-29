@@ -29,62 +29,6 @@ export default function AdminDashboard() {
   const [instaUrl, setInstaUrl] = useState('');
   const [updatingInsta, setUpdatingInsta] = useState(false);
   const [inquiries, setInquiries] = useState([]);
-  const [isExportingZip, setIsExportingZip] = useState(false);
-
-  const handleExportProductsZip = async () => {
-    setIsExportingZip(true);
-    try {
-      const JSZip = (await import('jszip')).default;
-      const zip = new JSZip();
-
-      // Fetch uploaded products from hardik_products DB table
-      const { data: dbProducts } = await supabase.from('hardik_products').select('*');
-      
-      zip.file('products_catalog.json', JSON.stringify(dbProducts || [], null, 2));
-
-      const imgFolder = zip.folder('product_images');
-      let count = 0;
-
-      if (dbProducts && dbProducts.length > 0) {
-        for (let i = 0; i < dbProducts.length; i++) {
-          const p = dbProducts[i];
-          const imgUrl = p.image_url || p.url;
-          if (imgUrl) {
-            try {
-              const res = await fetch(imgUrl);
-              if (res.ok) {
-                const blob = await res.blob();
-                const ext = imgUrl.includes('.png') ? 'png' : imgUrl.includes('.jpeg') ? 'jpeg' : 'jpg';
-                const cleanTitle = (p.title || 'item').replace(/[^a-zA-Z0-9_-]/g, '_');
-                const fileName = `${p.category || 'ALL'}_${cleanTitle}_${i + 1}.${ext}`;
-                imgFolder.file(fileName, blob);
-                count++;
-              }
-            } catch (err) {
-              console.warn('Failed to fetch image:', imgUrl, err);
-            }
-          }
-        }
-      }
-
-      const zipBlob = await zip.generateAsync({ type: 'blob' });
-      const downloadUrl = URL.createObjectURL(zipBlob);
-      const a = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = `Hardik_Jewellers_Products_${new Date().toISOString().slice(0, 10)}.zip`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(downloadUrl);
-
-      alert(`✅ Products ZIP Export Complete! Exported ${count} images & catalog data.`);
-    } catch (err) {
-      console.error(err);
-      alert('Export failed: ' + err.message);
-    } finally {
-      setIsExportingZip(false);
-    }
-  };
 
   const handleSendPushAlert = async (e) => {
     e.preventDefault();
@@ -205,11 +149,10 @@ export default function AdminDashboard() {
     if (status === 'approved') {
       const { data: payment } = await supabase.from('payments').select('amount').eq('id', paymentId).single();
       if (payment) {
-        const { data: rates } = await supabase.from('hardik_rates').select('gold24k, gold22k').eq('id', 1).single();
-        const activeRate = rates?.gold22k || rates?.gold24k;
-        if (activeRate > 0) {
-          const effectiveRate = activeRate * 1.11 * 1.03; // Rate + 11% making + 3% GST
-          updateData.gold_rate = activeRate;
+        const { data: rates } = await supabase.from('hardik_rates').select('gold24k').eq('id', 1).single();
+        if (rates && rates.gold24k > 0) {
+          const effectiveRate = rates.gold24k * 1.11 * 1.03; // Rate + 11% making + 3% GST
+          updateData.gold_rate = rates.gold24k;
           updateData.gold_purchased = Number((payment.amount / effectiveRate).toFixed(4));
         }
       }
@@ -252,11 +195,10 @@ export default function AdminDashboard() {
 
     let gold_rate = null;
     let gold_purchased = null;
-    const { data: rates } = await supabase.from('hardik_rates').select('gold24k, gold22k').eq('id', 1).single();
-    const activeRate = rates?.gold22k || rates?.gold24k;
-    if (activeRate > 0) {
-      gold_rate = activeRate;
-      gold_purchased = Number((amountFloat / activeRate).toFixed(4));
+    const { data: rates } = await supabase.from('hardik_rates').select('gold24k').eq('id', 1).single();
+    if (rates && rates.gold24k > 0) {
+      gold_rate = rates.gold24k;
+      gold_purchased = Number((amountFloat / rates.gold24k).toFixed(4));
     }
 
     const { error } = await supabase.from('payments').insert([{
@@ -390,18 +332,6 @@ export default function AdminDashboard() {
                 {sendingAlert ? 'Broadcasting...' : 'Broadcast to All'}
               </button>
             </form>
-          </div>
-
-          <div style={{ flex: 1, minWidth: '300px' }}>
-            <h3 style={{ color: 'var(--royal-gold)', fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', marginBottom: '15px' }}>Export Product Catalog</h3>
-            <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '12px' }}>Download a .zip package of all product images & catalog metadata.</p>
-            <button 
-              onClick={handleExportProductsZip} 
-              disabled={isExportingZip} 
-              style={{ padding: '12px 20px', background: '#2563eb', color: '#fff', border: 'none', fontWeight: 'bold', textTransform: 'uppercase', cursor: isExportingZip ? 'not-allowed' : 'pointer', borderRadius: '4px', width: '100%' }}
-            >
-              {isExportingZip ? 'Packing ZIP...' : '📦 Export All Products ZIP'}
-            </button>
           </div>
         </div>
 
@@ -654,7 +584,7 @@ function LedgerContent({ scheme, payments, handleApproval, setSelectedScheme, is
         {isPrintMode && (
           <div style={{ fontSize: '0.9rem', color: '#444', marginTop: '10px', lineHeight: '1.5' }}>
             <p style={{ margin: 0 }}>Opp. Old Bus Stand, Main Market, City - 123456</p>
-            <p style={{ margin: 0 }}>Phone: +91 98929 11531 | Email: contact@hardikjewellers.com</p>
+            <p style={{ margin: 0 }}>Phone: +91 98765 43210 | Email: contact@hardikjewellers.com</p>
             <p style={{ margin: 0 }}>GSTIN: 24AAAAA0000A1Z5</p>
           </div>
         )}
