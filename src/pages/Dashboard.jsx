@@ -54,7 +54,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    document.title = "My Scheme Dashboard | Hardik Jewellers";
+    document.title = "My Scheme Dashboard | Laxmi Jewellers";
     fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -190,7 +190,7 @@ export default function Dashboard() {
               <Sparkles size={48} color="var(--royal-gold)" />
             </div>
             <h3 style={{ color: 'var(--peacock-green)', fontSize: '2rem', fontFamily: '"Cinzel", serif', marginBottom: '15px' }}>Start Your Golden Journey</h3>
-            <p style={{ color: 'var(--text-muted)', margin: '0 auto 30px', fontSize: '1.1rem', maxWidth: '500px', lineHeight: '1.6' }}>Invest in pure BIS Hallmarked gold simply for 11 months, and get the 12th month as an absolute BONUS from Hardik Jewellers.</p>
+            <p style={{ color: 'var(--text-muted)', margin: '0 auto 30px', fontSize: '1.1rem', maxWidth: '500px', lineHeight: '1.6' }}>Invest in pure BIS Hallmarked gold simply for 11 months, and get the 12th month as an absolute BONUS from Laxmi Jewellers.</p>
             <form onSubmit={startScheme} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
               <div>
                 <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold' }}>Monthly Installment (₹)</label>
