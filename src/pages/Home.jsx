@@ -1500,6 +1500,22 @@ export default function Home() {
   
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isIosHelpOpen, setIsIosHelpOpen] = useState(false);
+  const [showAppPopup, setShowAppPopup] = useState(false);
+
+  useEffect(() => {
+    const isDismissed = sessionStorage.getItem('HARDIK_app_popup_dismissed');
+    if (!isDismissed) {
+      const timer = setTimeout(() => {
+        setShowAppPopup(true);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const closeAppPopup = () => {
+    setShowAppPopup(false);
+    sessionStorage.setItem('HARDIK_app_popup_dismissed', 'true');
+  };
 
   // Helper utility to convert VAPID public key string into Uint8Array format
   const urlB64ToUint8Array = (base64String) => {
@@ -4343,6 +4359,200 @@ export default function Home() {
           >
             ✕
           </button>
+        </div>
+      )}
+
+      {/* Clean Animatic App Download Popup Modal */}
+      {showAppPopup && (
+        <div style={{
+          position: 'fixed',
+          top: 0, left: 0, width: '100vw', height: '100vh',
+          zIndex: 99999,
+          background: 'rgba(15, 23, 42, 0.7)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px'
+        }}>
+          <div style={{
+            background: 'linear-gradient(145deg, #ffffff 0%, #fff6f7 100%)',
+            borderRadius: '24px',
+            maxWidth: '440px',
+            width: '100%',
+            padding: '32px 28px',
+            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 138, 148, 0.35)',
+            position: 'relative',
+            animation: 'animaticScaleIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            textAlign: 'center'
+          }}>
+            {/* Close Button */}
+            <button
+              onClick={closeAppPopup}
+              style={{
+                position: 'absolute',
+                top: '16px', right: '16px',
+                width: '32px', height: '32px',
+                borderRadius: '50%',
+                background: 'rgba(212, 138, 148, 0.12)',
+                border: 'none',
+                color: '#555555',
+                fontSize: '16px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s'
+              }}
+            >
+              ✕
+            </button>
+
+            {/* Brand Logo & Glowing Pulse Ring */}
+            <div style={{ position: 'relative', width: '76px', height: '76px', margin: '0 auto 20px' }}>
+              <div style={{
+                position: 'absolute', top: '-4px', left: '-4px', right: '-4px', bottom: '-4px',
+                borderRadius: '50%',
+                animation: 'pulseGlow 2.5s infinite',
+                border: '2px dashed var(--royal-gold)'
+              }}></div>
+              <img
+                src="/assets/logo.jpg"
+                alt="HARDIK JEWELLERS Logo"
+                style={{
+                  width: '76px', height: '76px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: '2px solid var(--royal-gold)',
+                  boxShadow: '0 8px 24px rgba(212, 138, 148, 0.3)'
+                }}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div style={{
+                display: 'none',
+                width: '76px', height: '76px',
+                borderRadius: '50%',
+                border: '2px solid var(--royal-gold)',
+                background: 'linear-gradient(135deg, var(--royal-gold-light), transparent)',
+                alignItems: 'center', justifyContent: 'center'
+              }}>
+                <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--royal-gold)', fontFamily: 'Cinzel, serif' }}>HJ</span>
+              </div>
+            </div>
+
+            {/* Title & Subtitle */}
+            <span style={{
+              display: 'inline-block',
+              fontSize: '10px',
+              letterSpacing: '3px',
+              textTransform: 'uppercase',
+              fontWeight: '800',
+              color: 'var(--royal-gold)',
+              background: 'rgba(212, 138, 148, 0.12)',
+              padding: '4px 14px',
+              borderRadius: '20px',
+              marginBottom: '12px'
+            }}>
+              OFFICIAL APP
+            </span>
+
+            <h3 style={{
+              margin: '0 0 8px',
+              fontFamily: 'var(--font-serif)',
+              fontSize: '22px',
+              fontWeight: '700',
+              color: 'var(--peacock-green)',
+              lineHeight: '1.2'
+            }}>
+              Install HARDIK JEWELLERS
+            </h3>
+
+            <p style={{
+              margin: '0 0 22px',
+              fontSize: '13px',
+              color: '#555555',
+              lineHeight: '1.5'
+            }}>
+              Get instant live 22K Gold & Silver rates, handcrafted collections & scheme updates directly on your mobile home screen.
+            </p>
+
+            {/* Benefits Checklist */}
+            <div style={{
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '16px',
+              marginBottom: '24px',
+              border: '1px solid rgba(212, 138, 148, 0.25)',
+              textAlign: 'left',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', color: '#333333', fontWeight: '600' }}>
+                <span style={{ color: 'var(--royal-gold)', fontSize: '16px' }}>⚡</span>
+                <span>Live Gold & Silver Rate Notifications</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', color: '#333333', fontWeight: '600' }}>
+                <span style={{ color: 'var(--royal-gold)', fontSize: '16px' }}>💎</span>
+                <span>Bespoke Jewelry Catalog & Scheme Tracker</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', color: '#333333', fontWeight: '600' }}>
+                <span style={{ color: 'var(--royal-gold)', fontSize: '16px' }}>📱</span>
+                <span>1-Tap Fast Home Screen Access</span>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <button
+                onClick={() => {
+                  closeAppPopup();
+                  handleInstallClick();
+                }}
+                style={{
+                  position: 'relative',
+                  overflow: 'hidden',
+                  width: '100%',
+                  padding: '14px 20px',
+                  borderRadius: '14px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, var(--royal-gold) 0%, var(--peacock-green) 100%)',
+                  color: '#ffffff',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  letterSpacing: '1px',
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 20px rgba(212, 138, 148, 0.4)',
+                  transition: 'transform 0.2s, boxShadow 0.2s'
+                }}
+              >
+                INSTALL APP NOW
+              </button>
+
+              <button
+                onClick={closeAppPopup}
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  borderRadius: '12px',
+                  border: 'none',
+                  background: 'transparent',
+                  color: '#777777',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}
+              >
+                Continue to Website
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
