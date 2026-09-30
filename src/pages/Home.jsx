@@ -2344,7 +2344,7 @@ export default function Home() {
         <div className="nav-container">
           
           <a href="#" className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <img src="/assets/logo.jpg" alt="Logo" className="brand-logo-img" style={{ height: '36px', width: '36px', borderRadius: '8px', objectFit: 'cover' }} />
+            <img src="/assets/logo.svg" alt="HARDIK JEWELLERS Logo" className="brand-logo-img" style={{ height: '40px', width: '40px', borderRadius: '50%', objectFit: 'contain' }} />
             <div className="brand-text-container">
               <h1 className="brand-name" style={{ margin: 0, fontSize: 'inherit', fontWeight: 'inherit', fontFamily: 'inherit', color: 'inherit', display: 'inline' }}>HARDIK JEWELLERS</h1>
               <span className="brand-subtitle">ULHASNAGAR</span>
@@ -3371,7 +3371,7 @@ export default function Home() {
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <img 
-            src="/assets/logo.jpg" 
+            src="/assets/logo.svg" 
             alt="App Logo" 
             style={{ 
               height: '72px', 
@@ -4418,7 +4418,7 @@ export default function Home() {
                 border: '2px dashed var(--royal-gold)'
               }}></div>
               <img
-                src="/assets/logo.jpg"
+                src="/assets/logo.svg"
                 alt="HARDIK JEWELLERS Logo"
                 style={{
                   width: '76px', height: '76px',
