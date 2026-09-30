@@ -299,7 +299,7 @@ export default function AdminDashboard() {
           <div style={{ flex: 1, minWidth: '300px' }}>
             <h3 style={{ color: 'var(--royal-gold)', fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', marginBottom: '15px' }}>Store QR Code</h3>
             <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-              <input type="file" accept="image/*" onChange={handleQrUpload} disabled={qrUploading} style={{ color: '#fff', background: '#000', padding: '10px', border: '1px solid #444', flex: 1 }} />
+              <input type="file" accept="image/*,.heic,.heif,.heics,.heifs,image/heic,image/heif" onChange={handleQrUpload} disabled={qrUploading} style={{ color: '#fff', background: '#000', padding: '10px', border: '1px solid #444', flex: 1 }} />
               {qrUploading && <span style={{ color: 'var(--royal-gold)' }}>Uploading...</span>}
             </div>
           </div>
