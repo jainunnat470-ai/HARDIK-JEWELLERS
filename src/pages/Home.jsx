@@ -4409,40 +4409,7 @@ export default function Home() {
               ✕
             </button>
 
-            {/* Brand Logo & Glowing Pulse Ring */}
-            <div style={{ position: 'relative', width: '76px', height: '76px', margin: '0 auto 20px' }}>
-              <div style={{
-                position: 'absolute', top: '-4px', left: '-4px', right: '-4px', bottom: '-4px',
-                borderRadius: '50%',
-                animation: 'pulseGlow 2.5s infinite',
-                border: '2px dashed var(--royal-gold)'
-              }}></div>
-              <img
-                src="/assets/logo.jpg"
-                alt="HARDIK JEWELLERS Logo"
-                style={{
-                  width: '76px', height: '76px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  border: '2px solid var(--royal-gold)',
-                  boxShadow: '0 8px 24px rgba(212, 138, 148, 0.3)'
-                }}
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                }}
-              />
-              <div style={{
-                display: 'none',
-                width: '76px', height: '76px',
-                borderRadius: '50%',
-                border: '2px solid var(--royal-gold)',
-                background: 'linear-gradient(135deg, var(--royal-gold-light), transparent)',
-                alignItems: 'center', justifyContent: 'center'
-              }}>
-                <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--royal-gold)', fontFamily: 'Cinzel, serif' }}>HJ</span>
-              </div>
-            </div>
+
 
             {/* Title & Subtitle */}
             <span style={{
