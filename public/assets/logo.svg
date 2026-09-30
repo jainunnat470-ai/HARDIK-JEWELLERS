@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7d08a" />
+      <stop offset="30%" stop-color="#d48a94" />
+      <stop offset="70%" stop-color="#b26872" />
+      <stop offset="100%" stop-color="#7a3b45" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#fff6f7" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#d48a94" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Outer Gold Circle Frame -->
+  <circle cx="250" cy="250" r="230" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="8" filter="url(#shadow)"/>
+  <circle cx="250" cy="250" r="215" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="6,4"/>
+  
+  <!-- Crown / Diamond Top Crest -->
+  <path d="M250 85 L275 125 L315 115 L290 155 L210 155 L185 115 L225 125 Z" fill="url(#goldGrad)" />
+  <circle cx="250" cy="80" r="8" fill="url(#goldGrad)" />
+  <circle cx="185" cy="110" r="5" fill="url(#goldGrad)" />
+  <circle cx="315" cy="110" r="5" fill="url(#goldGrad)" />
+
+  <!-- Monogram HJ -->
+  <text x="250" y="275" font-family="'Cinzel', 'Playfair Display', 'Georgia', serif" font-size="130" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="4">HJ</text>
+
+  <!-- Divider Line -->
+  <line x1="120" y1="310" x2="380" y2="310" stroke="url(#goldGrad)" stroke-width="3"/>
+  <polygon points="250,305 258,310 250,315 242,310" fill="url(#goldGrad)"/>
+
+  <!-- Subtitle Text -->
+  <text x="250" y="345" font-family="'Montserrat', 'Arial', sans-serif" font-size="24" font-weight="bold" fill="#b26872" text-anchor="middle" letter-spacing="8">HARDIK</text>
+  <text x="250" y="378" font-family="'Montserrat', 'Arial', sans-serif" font-size="18" font-weight="bold" fill="#d48a94" text-anchor="middle" letter-spacing="6">JEWELLERS</text>
+  <text x="250" y="408" font-family="'Montserrat', 'Arial', sans-serif" font-size="12" font-weight="600" fill="#7a3b45" text-anchor="middle" letter-spacing="5">ULHASNAGAR</text>
+</svg>
