@@ -100,7 +100,7 @@ export default function Login() {
         </button>
 
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <img src="/assets/logo.jpg?v=4" alt="Logo" style={{ height: '54px', marginBottom: '15px' }} />
+          <img src="/assets/logo.png" alt="HARDIK JEWELLERS Logo" style={{ height: '64px', borderRadius: '16px', marginBottom: '15px', objectFit: 'contain' }} />
           <h2 style={{ 
             color: 'var(--peacock-green)', 
             fontFamily: 'var(--font-serif)',
