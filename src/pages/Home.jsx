@@ -1819,12 +1819,17 @@ export default function Home() {
     const file = e.target.files[0];
     if (!file) return;
 
-    const isHeic = file.name.toLowerCase().endsWith('.heic') || 
-                   file.name.toLowerCase().endsWith('.heif') || 
-                   file.type.includes('heic') || 
-                   file.type.includes('heif');
+    const fileNameLower = (file.name || '').toLowerCase();
+    const fileTypeLower = (file.type || '').toLowerCase();
 
-    if (isHeic) {
+    const isHeicOrHeif = fileNameLower.endsWith('.heic') || 
+                         fileNameLower.endsWith('.heif') || 
+                         fileNameLower.endsWith('.heics') || 
+                         fileNameLower.endsWith('.heifs') || 
+                         fileTypeLower.includes('heic') || 
+                         fileTypeLower.includes('heif');
+
+    if (isHeicOrHeif) {
       setIsConvertingHeic(true);
       try {
         const convertedBlob = await heic2any({
@@ -1833,12 +1838,12 @@ export default function Home() {
           quality: 0.85
         });
         const resultBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
-        const newFileName = file.name.replace(/\.(heic|heif)$/i, '.jpg');
+        const newFileName = file.name.replace(/\.(heic|heif|heics|heifs)$/i, '.jpg');
         const convertedFile = new File([resultBlob], newFileName, { type: 'image/jpeg' });
         setUpImageFile(convertedFile);
       } catch (err) {
-        console.error("HEIC conversion error:", err);
-        alert("Could not convert HEIC photo. Please select a JPG or PNG image.");
+        console.error("HEIC/HEIF conversion error:", err);
+        alert("Could not convert HEIC/HEIF photo. Please select a JPG or PNG image.");
       } finally {
         setIsConvertingHeic(false);
       }
