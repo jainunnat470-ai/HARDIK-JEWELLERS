@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Clock, XCircle, CreditCard, UploadCloud, Gem, Sparkles, PlusCircle } from 'lucide-react';
+import heic2any from 'heic2any';
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -18,6 +19,44 @@ export default function Dashboard() {
   const [paymentMethod, setPaymentMethod] = useState('UPI'); // 'UPI' or 'Cash'
   const [screenshotFile, setScreenshotFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [isConvertingHeic, setIsConvertingHeic] = useState(false);
+
+  const handleScreenshotChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const fileNameLower = (file.name || '').toLowerCase();
+    const fileTypeLower = (file.type || '').toLowerCase();
+
+    const isHeicOrHeif = fileNameLower.endsWith('.heic') || 
+                         fileNameLower.endsWith('.heif') || 
+                         fileNameLower.endsWith('.heics') || 
+                         fileNameLower.endsWith('.heifs') || 
+                         fileTypeLower.includes('heic') || 
+                         fileTypeLower.includes('heif');
+
+    if (isHeicOrHeif) {
+      setIsConvertingHeic(true);
+      try {
+        const convertedBlob = await heic2any({
+          blob: file,
+          toType: 'image/jpeg',
+          quality: 0.85
+        });
+        const resultBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+        const newFileName = file.name.replace(/\.(heic|heif|heics|heifs)$/i, '.jpg');
+        const convertedFile = new File([resultBlob], newFileName, { type: 'image/jpeg' });
+        setScreenshotFile(convertedFile);
+      } catch (err) {
+        console.error("HEIC/HEIF conversion error:", err);
+        setScreenshotFile(file);
+      } finally {
+        setIsConvertingHeic(false);
+      }
+    } else {
+      setScreenshotFile(file);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -467,14 +506,14 @@ export default function Dashboard() {
                       <div style={{ position: 'relative' }}>
                         <input 
                           type="file" 
-                          accept="image/*" 
-                          onChange={(e) => setScreenshotFile(e.target.files[0])}
+                          accept="image/*,.heic,.heif,.heics,.heifs,image/heic,image/heif" 
+                          onChange={handleScreenshotChange}
                           style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, cursor: 'pointer', zIndex: 2 }}
                         />
                         <div style={{ padding: '12px', border: '1px dashed rgba(212, 138, 148, 0.3)', borderRadius: '8px', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: screenshotFile ? 'var(--peacock-green)' : '#888888', transition: 'all 0.2s' }}>
                           <UploadCloud size={16} />
                           <span style={{ fontSize: '12px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '200px', fontWeight: '700' }}>
-                            {screenshotFile ? screenshotFile.name : "Choose screenshot image"}
+                            {isConvertingHeic ? "Converting iPhone photo..." : screenshotFile ? screenshotFile.name : "Choose screenshot image (.jpg, .png, .heic, .heif)"}
                           </span>
                         </div>
                       </div>
