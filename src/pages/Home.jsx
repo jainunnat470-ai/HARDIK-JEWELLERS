@@ -3006,6 +3006,8 @@ export default function Home() {
                     src={item.url} 
                     alt={item.title} 
                     className="model-marquee-img"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               ))}
@@ -3279,6 +3281,8 @@ export default function Home() {
                       transition: 'transform 0.5s ease'
                     }}
                     className="insta-post-img"
+                    loading="lazy"
+                    decoding="async"
                   />
                   {/* Hover overlay with Instagram logo */}
                   <div style={{
