@@ -75,29 +75,8 @@ const bangleImages = [
   { id: "bangle-gbn38", url: "/assets/ZIPBANGLES_NEW/GBN38.jpg", title: "Gold Bangle GBN38", category: "LADIES", subCategory: "BANGLES", purity: "22K Hallmarked Gold" }
 ];
 
-// Gents Bracelets - collection from iloveimg-converted.zip
-const gentsBraceletImages = [
-  { id: "gbr-img_8911", url: "/assets/ZIPGENTSBRACELET/IMG_8911.jpg", title: "Gents Gold Bracelet IMG 8911", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_8933", url: "/assets/ZIPGENTSBRACELET/IMG_8933.jpg", title: "Gents Gold Bracelet IMG 8933", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_8944", url: "/assets/ZIPGENTSBRACELET/IMG_8944.jpg", title: "Gents Gold Bracelet IMG 8944", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_8954", url: "/assets/ZIPGENTSBRACELET/IMG_8954.jpg", title: "Gents Gold Bracelet IMG 8954", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_8962", url: "/assets/ZIPGENTSBRACELET/IMG_8962.jpg", title: "Gents Gold Bracelet IMG 8962", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_8976", url: "/assets/ZIPGENTSBRACELET/IMG_8976.jpg", title: "Gents Gold Bracelet IMG 8976", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_8988", url: "/assets/ZIPGENTSBRACELET/IMG_8988.jpg", title: "Gents Gold Bracelet IMG 8988", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_8998", url: "/assets/ZIPGENTSBRACELET/IMG_8998.jpg", title: "Gents Gold Bracelet IMG 8998", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9002", url: "/assets/ZIPGENTSBRACELET/IMG_9002.jpg", title: "Gents Gold Bracelet IMG 9002", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9013", url: "/assets/ZIPGENTSBRACELET/IMG_9013.jpg", title: "Gents Gold Bracelet IMG 9013", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9014", url: "/assets/ZIPGENTSBRACELET/IMG_9014.jpg", title: "Gents Gold Bracelet IMG 9014", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9022", url: "/assets/ZIPGENTSBRACELET/IMG_9022.jpg", title: "Gents Gold Bracelet IMG 9022", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9032", url: "/assets/ZIPGENTSBRACELET/IMG_9032.jpg", title: "Gents Gold Bracelet IMG 9032", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9040", url: "/assets/ZIPGENTSBRACELET/IMG_9040.jpg", title: "Gents Gold Bracelet IMG 9040", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9047", url: "/assets/ZIPGENTSBRACELET/IMG_9047.jpg", title: "Gents Gold Bracelet IMG 9047", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9057", url: "/assets/ZIPGENTSBRACELET/IMG_9057.jpg", title: "Gents Gold Bracelet IMG 9057", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9065", url: "/assets/ZIPGENTSBRACELET/IMG_9065.jpg", title: "Gents Gold Bracelet IMG 9065", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9071", url: "/assets/ZIPGENTSBRACELET/IMG_9071.jpg", title: "Gents Gold Bracelet IMG 9071", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9074", url: "/assets/ZIPGENTSBRACELET/IMG_9074.jpg", title: "Gents Gold Bracelet IMG 9074", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: "gbr-img_9083", url: "/assets/ZIPGENTSBRACELET/IMG_9083.jpg", title: "Gents Gold Bracelet IMG 9083", category: 'GENTS', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' }
-];
+// Gents Bracelets
+const gentsBraceletImages = [];
 
 // Gents Chains - all images from ZIPGENTSCHAINS
 const gentsChainsImages = [
@@ -295,17 +274,7 @@ const ringImages = [
 ];
 
 // Ladies Bracelets
-const ladiesBraceletImages = [
-  { id: 'lb-glb2', url: '/assets/ZIPLADIESBRACELET/GLB2.jpg', title: 'Ladies Bracelet GLB2', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb20', url: '/assets/ZIPLADIESBRACELET/GLB20.jpg', title: 'Ladies Bracelet GLB20', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb22', url: '/assets/ZIPLADIESBRACELET/GLB22.jpg', title: 'Ladies Bracelet GLB22', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb3', url: '/assets/ZIPLADIESBRACELET/GLB3.jpg', title: 'Ladies Bracelet GLB3', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb4', url: '/assets/ZIPLADIESBRACELET/GLB4.jpg', title: 'Ladies Bracelet GLB4', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb5', url: '/assets/ZIPLADIESBRACELET/GLB5.jpg', title: 'Ladies Bracelet GLB5', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb7', url: '/assets/ZIPLADIESBRACELET/GLB7.jpg', title: 'Ladies Bracelet GLB7', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb8', url: '/assets/ZIPLADIESBRACELET/GLB8.jpg', title: 'Ladies Bracelet GLB8', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-  { id: 'lb-glb9', url: '/assets/ZIPLADIESBRACELET/GLB9.jpg', title: 'Ladies Bracelet GLB9', category: 'LADIES', subCategory: 'BRACELETS', purity: '22K Hallmarked Gold' },
-];
+const ladiesBraceletImages = [];
 
 // Long Mangalsutra
 const longMangalsutraImages = [
@@ -2911,7 +2880,7 @@ export default function Home() {
                         <Share2 size={16} />
                       </button>
                       <a
-                        href={`https://wa.me/919892911531?text=Hello%20HARDIK%20Jewellers,%20I%20am%20interested%20in%20buying%20your%20${encodeURIComponent(product.title)}.%0A%0AProduct%20Link:%20https://www.hardikjewellers.in/?product=${product.id}`}
+                        href={`https://wa.me/919892911531?text=Hello%20HARDIK%20Jewellers,%20I%20am%20interested%20in%20buying%20your%20${encodeURIComponent(product.title)}.${product.weight ? `%0AWeight:%20${encodeURIComponent(product.weight)}` : ''}%0A%0AProduct%20Link:%20https://www.hardikjewellers.in/?product=${product.id}`}
                         target="_blank"
                         rel="noreferrer"
                         style={{
@@ -3877,7 +3846,7 @@ export default function Home() {
                     {/* Action buttons (WhatsApp inquiry and Trash remove) */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <a
-                        href={`https://wa.me/919892911531?text=Hello%20HARDIK%20Jewellers,%20I%20am%20interested%20in%20buying%20your%20${encodeURIComponent(product.title)}.%0A%0AProduct%20Link:%20https://www.hardikjewellers.in/?product=${product.id}%20from%20my%20wishlist.`}
+                        href={`https://wa.me/919892911531?text=Hello%20HARDIK%20Jewellers,%20I%20am%20interested%20in%20buying%20your%20${encodeURIComponent(product.title)}.${product.weight ? `%0AWeight:%20${encodeURIComponent(product.weight)}` : ''}%0A%0AProduct%20Link:%20https://www.hardikjewellers.in/?product=${product.id}%20from%20my%20wishlist.`}
                         target="_blank"
                         rel="noreferrer"
                         style={{
@@ -4237,7 +4206,7 @@ export default function Home() {
                   <Share2 size={18} />
                 </button>
                 <a
-                  href={`https://wa.me/919892911531?text=Hello%20HARDIK%20Jewellers,%20I%20am%20interested%20in%20buying%20your%20${encodeURIComponent(lightboxProduct.title)}.%0A%0AProduct%20Link:%20https://www.hardikjewellers.in/?product=${lightboxProduct.id}`}
+                  href={`https://wa.me/919892911531?text=Hello%20HARDIK%20Jewellers,%20I%20am%20interested%20in%20buying%20your%20${encodeURIComponent(lightboxProduct.title)}.${lightboxProduct.weight ? `%0AWeight:%20${encodeURIComponent(lightboxProduct.weight)}` : ''}%0A%0AProduct%20Link:%20https://www.hardikjewellers.in/?product=${lightboxProduct.id}`}
                   target="_blank"
                   rel="noreferrer"
                   style={{
