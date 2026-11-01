@@ -6,7 +6,7 @@ const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1N
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 webpush.setVapidDetails(
-  'mailto:admin@laxmijewellers.in',
+  'mailto:admin@hardikjewellers.in',
   'BEXW6qmnlL19TYxTUbLNgawyJPLEe0dWursfi25_AxGvbBRu--RSdGIFU0OMfdd5mV5yOfSF19V7B0Jdwro497Y',
   'Yxtf05ComhKSB__lTPZZxajsk9bdPJebVk6qoxdNzKM'
 );
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { gold24k, gold22k } = req.body;
+    const { gold24k, gold22k, silver, customTitle, customBody } = req.body || {};
     
     // Download current subscription file from Supabase storage bucket
     const { data, error } = await supabase.storage
@@ -36,15 +36,23 @@ export default async function handler(req, res) {
       subscriptions = [];
     }
 
-    const { customTitle, customBody } = req.body;
+    if (subscriptions.length === 0) {
+      return res.status(200).json({ success: true, sentCount: 0, message: 'Subscription list is empty.' });
+    }
 
-    const is24kHidden = !gold24k || gold24k === 0 || gold24k === "0";
-    const defaultBody = is24kHidden 
-      ? `\uD83D\uDD14 Live Gold Rate Alert: 22K Gold is currently at \u20B9${gold22k}/g. Tap to view details.`
-      : `\uD83D\uDD14 Live Gold Rate Alert: 24K Gold is currently at \u20B9${gold24k}/g | 22K Gold is at \u20B9${gold22k}/g. Tap to view details.`;
+    let defaultBody = '';
+    if (gold22k && silver) {
+      defaultBody = `🔔 Live Rate Alert: 22K Gold is ₹${gold22k}/g | Silver is ₹${silver}/g. Tap to view today's rates!`;
+    } else if (gold22k) {
+      defaultBody = `🔔 Live Gold Rate Alert: 22K Gold is ₹${gold22k}/g. Tap to view today's rates!`;
+    } else if (gold24k && gold22k) {
+      defaultBody = `🔔 Live Gold Rate Alert: 24K Gold ₹${gold24k}/g | 22K Gold ₹${gold22k}/g. Tap to view!`;
+    } else {
+      defaultBody = `🔔 Live Rate Update: Today's Gold and Silver rates have been updated. Tap to view!`;
+    }
 
     const payload = JSON.stringify({
-      title: customTitle || 'Laxmi Jewellers',
+      title: customTitle || 'Hardik Jewellers',
       body: customBody || defaultBody
     });
 
