@@ -20,7 +20,7 @@ self.addEventListener('fetch', (e) => {
 self.addEventListener('push', (event) => {
   let payload = {
     title: 'Hardik Jewellers',
-    body: 'Live Gold Rate Update! Check today\'s latest prices.'
+    body: "Live Gold Rate Update! Check today's latest prices."
   };
 
   if (event.data) {
@@ -36,8 +36,8 @@ self.addEventListener('push', (event) => {
 
   const options = {
     body: payload.body,
-    icon: '/assets/logo.jpg',
-    badge: '/assets/logo.jpg',
+    icon: '/assets/logo.png',
+    badge: '/assets/logo.png',
     vibrate: [200, 100, 200],
     data: {
       url: '/'

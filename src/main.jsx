@@ -24,8 +24,23 @@ function urlB64ToUint8Array(base64String) {
   return outputArray;
 }
 
-// Function to upload new background push subscription objects to Supabase storage
+// Function to upload new background push subscription objects to server / Supabase storage
 async function saveSubscriptionToStorage(subscription) {
+  try {
+    const res = await fetch('/api/save-subscription', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ subscription })
+    });
+    const data = await res.json();
+    if (data && data.success) {
+      console.log('Push subscription synced to server successfully.');
+      return;
+    }
+  } catch (apiErr) {
+    console.warn('API save-subscription failed, trying direct Supabase fallback:', apiErr);
+  }
+
   const bucketName = 'payment_screenshots';
   const fileName = 'push_subscriptions.json';
   
@@ -71,25 +86,26 @@ if ('serviceWorker' in navigator) {
       .then((reg) => {
         console.log('PWA Service Worker registered successfully', reg);
         
-        // Request Notification permissions
-        if ('Notification' in window) {
-          Notification.requestPermission().then((permission) => {
-            if (permission === 'granted') {
-              console.log('Notification permission granted.');
-              if ('PushManager' in window && reg.pushManager) {
+        // If notification permission is already granted, keep push subscription active and synced
+        if ('Notification' in window && Notification.permission === 'granted') {
+          if ('PushManager' in window && reg.pushManager) {
+            reg.pushManager.getSubscription().then((existingSub) => {
+              if (existingSub) {
+                saveSubscriptionToStorage(existingSub);
+              } else {
                 const applicationServerKey = urlB64ToUint8Array('BEXW6qmnlL19TYxTUbLNgawyJPLEe0dWursfi25_AxGvbBRu--RSdGIFU0OMfdd5mV5yOfSF19V7B0Jdwro497Y');
                 reg.pushManager.subscribe({
                   userVisibleOnly: true,
                   applicationServerKey: applicationServerKey
-                }).then((subscription) => {
-                  console.log('Client subscribed to push notification engine:', subscription);
-                  saveSubscriptionToStorage(subscription);
+                }).then((newSub) => {
+                  console.log('Client subscribed to push notification engine:', newSub);
+                  saveSubscriptionToStorage(newSub);
                 }).catch((err) => {
                   console.warn('Push manager subscription failed:', err.message);
                 });
               }
-            }
-          });
+            });
+          }
         }
       })
       .catch((err) => console.error('PWA Service Worker registration failed', err));
