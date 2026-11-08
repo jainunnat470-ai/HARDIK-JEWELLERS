@@ -1664,32 +1664,30 @@ export default function Home() {
         console.warn("hardik_products table query bypassed:", e);
       }
 
-      let localProds = [];
+      // Fetch products stored in Supabase Storage custom_products.json
+      let storageProds = [];
       try {
-        localProds = JSON.parse(localStorage.getItem('HARDIK_custom_products') || '[]');
-        localProds = localProds.map(p => {
-          if (p && p.title) {
-            const tUpper = p.title.toUpperCase();
-            if (tUpper.includes('BANGLE') || tUpper.includes('GBN')) {
-              p.subCategory = 'BANGLES';
-              p.sub_category = 'BANGLES';
-            } else if (tUpper.includes('SHORT MANGALSUTRA') || tUpper.includes('GMS')) {
-              p.subCategory = 'SHORT MANGALSUTRA';
-              p.sub_category = 'SHORT MANGALSUTRA';
-            } else if (tUpper.includes('LONG MANGALSUTRA') || tUpper.includes('GGT')) {
-              p.subCategory = 'LONG MANGALSUTRA';
-              p.sub_category = 'LONG MANGALSUTRA';
-            }
+        const { data: sData, error: sError } = await supabase.storage
+          .from('payment_screenshots')
+          .download('custom_products.json');
+        if (!sError && sData) {
+          const sText = await sData.text();
+          const parsed = JSON.parse(sText || '[]');
+          if (Array.isArray(parsed)) {
+            storageProds = parsed.map(p => ({
+              ...p,
+              subCategory: p.subCategory || p.sub_category || 'ALL',
+              earringType: p.earringType || p.earring_type || 'ALL',
+              url: p.url || p.image_url
+            }));
           }
-          return p;
-        }).filter(p => p && !(p.title && (p.title.includes('GBN22') || p.title.includes('Bangle GBN22'))) && !(p.id && String(p.id).toLowerCase().includes('gbn22')));
-        localStorage.setItem('HARDIK_custom_products', JSON.stringify(localProds));
-      } catch (e) {
-        localProds = [];
+        }
+      } catch (stErr) {
+        console.warn("Supabase custom_products.json load bypassed:", stErr);
       }
 
       const mergedMap = new Map();
-      [...remoteProds, ...localProds].forEach(p => {
+      [...storageProds, ...remoteProds].forEach(p => {
         if (p && p.id && !mergedMap.has(p.id)) {
           mergedMap.set(p.id, p);
         }
@@ -1785,102 +1783,97 @@ export default function Home() {
     setIsUploading(true);
 
     try {
-      const fileExt = upImageFile.name.split('.').pop();
-      const fileName = `product_${Date.now()}_${Math.random().toString(36).substring(2, 7)}.${fileExt}`;
-      const filePath = `${fileName}`;
+      const fileExt = (upImageFile.name || 'jpg').split('.').pop();
+      const cleanFileName = `product_${Date.now()}_${Math.random().toString(36).substring(2, 7)}.${fileExt}`;
+      const filePath = `products/${cleanFileName}`;
 
-      let imageUrl = '';
-
-      // Try uploading to 'payment_screenshots' bucket first
-      try {
-        let uploadRes = await supabase.storage
-          .from('payment_screenshots')
-          .upload(filePath, upImageFile, { upsert: true });
-
-        if (!uploadRes.error) {
-          const { data: publicUrlData } = supabase.storage
-            .from('payment_screenshots')
-            .getPublicUrl(filePath);
-          imageUrl = publicUrlData.publicUrl;
-        } else {
-          // Try 'product-images' bucket
-          uploadRes = await supabase.storage
-            .from('product-images')
-            .upload(filePath, upImageFile, { upsert: true });
-
-          if (!uploadRes.error) {
-            const { data: publicUrlData } = supabase.storage
-              .from('product-images')
-              .getPublicUrl(filePath);
-            imageUrl = publicUrlData.publicUrl;
-          }
-        }
-      } catch (stErr) {
-        console.warn("Storage upload bypassed:", stErr);
-      }
-
-      // Base64 Data URL fallback (ensures upload succeeds even if bucket is missing)
-      if (!imageUrl) {
-        imageUrl = await new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = (err) => reject(err);
-          reader.readAsDataURL(upImageFile);
+      // 1. Upload image directly to Supabase storage 'payment_screenshots' bucket
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('payment_screenshots')
+        .upload(filePath, upImageFile, {
+          cacheControl: '3600',
+          upsert: true,
+          contentType: upImageFile.type || 'image/jpeg'
         });
+
+      if (uploadError) {
+        throw new Error("Failed to upload image to Supabase: " + uploadError.message);
       }
 
-      const newProduct = {
-        id: Date.now().toString(),
-        title: upTitle,
-        category: upCategory,
-        sub_category: upSubCategory,
-        earring_type: upEarringType,
-        purity: upPurity,
-        weight: upWeight,
-        image_url: imageUrl
-      };
+      // 2. Get Public URL from Supabase
+      const { data: publicUrlData } = supabase.storage
+        .from('payment_screenshots')
+        .getPublicUrl(filePath);
 
-      let finalProduct = {
-        id: newProduct.id,
+      const imageUrl = publicUrlData?.publicUrl;
+      if (!imageUrl) {
+        throw new Error("Could not retrieve public Supabase URL for uploaded image.");
+      }
+
+      const productId = `prod_${Date.now()}`;
+      const newProduct = {
+        id: productId,
         title: upTitle,
         category: upCategory,
         subCategory: upSubCategory,
+        sub_category: upSubCategory,
         earringType: upEarringType,
+        earring_type: upEarringType,
         purity: upPurity,
         weight: upWeight,
-        url: imageUrl
+        image_url: imageUrl,
+        url: imageUrl,
+        created_at: new Date().toISOString()
       };
 
-      // Attempt Supabase insert without crashing if hardik_products table is missing
+      // 3. Save product metadata directly in Supabase Storage custom_products.json
       try {
-        const { data: insertedData, error: insertError } = await supabase
-          .from('hardik_products')
-          .insert([newProduct])
-          .select()
-          .single();
+        let existingProducts = [];
+        const { data: jsonBlob, error: jsonErr } = await supabase.storage
+          .from('payment_screenshots')
+          .download('custom_products.json');
 
-        if (!insertError && insertedData) {
-          finalProduct.id = insertedData.id;
-        } else {
-          console.warn("Supabase hardik_products insert warning (saved locally):", insertError);
+        if (!jsonErr && jsonBlob) {
+          const text = await jsonBlob.text();
+          try { existingProducts = JSON.parse(text || '[]'); } catch (pe) { existingProducts = []; }
         }
-      } catch (dbErr) {
-        console.warn("Supabase table unavailable (saved locally):", dbErr);
+
+        const updatedProducts = [newProduct, ...existingProducts.filter(p => p.id !== newProduct.id)];
+        const jsonUploadBlob = new Blob([JSON.stringify(updatedProducts, null, 2)], { type: 'application/json' });
+
+        const { error: saveJsonErr } = await supabase.storage
+          .from('payment_screenshots')
+          .upload('custom_products.json', jsonUploadBlob, { upsert: true, contentType: 'application/json' });
+
+        if (saveJsonErr) {
+          console.warn("Could not sync to Supabase custom_products.json:", saveJsonErr);
+        } else {
+          console.log("Product metadata synced to Supabase storage successfully.");
+        }
+      } catch (jsonSaveErr) {
+        console.warn("Supabase custom_products.json error:", jsonSaveErr);
       }
 
-      // Save locally in localStorage
+      // 4. Also attempt database table insert if hardik_products exists
       try {
-        const localCustoms = JSON.parse(localStorage.getItem('HARDIK_custom_products') || '[]');
-        localCustoms.unshift(finalProduct);
-        localStorage.setItem('HARDIK_custom_products', JSON.stringify(localCustoms));
-      } catch (errLoc) {
-        console.error("Local storage save error:", errLoc);
+        await supabase.from('hardik_products').insert([{
+          id: newProduct.id,
+          title: upTitle,
+          category: upCategory,
+          sub_category: upSubCategory,
+          earring_type: upEarringType,
+          purity: upPurity,
+          weight: upWeight,
+          image_url: imageUrl
+        }]);
+      } catch (dbErr) {
+        // Table may not exist; custom_products.json in Supabase storage ensures persistence
       }
 
-      alert('Product uploaded successfully!');
+      alert('✅ Product and image saved to Supabase successfully!');
       
-      // Update state immediately
-      setDbProducts(prev => [finalProduct, ...prev]);
+      // Update UI state immediately
+      setDbProducts(prev => [newProduct, ...prev]);
 
       // Reset form
       setUpTitle('');
@@ -1889,7 +1882,7 @@ export default function Home() {
       setUpImageFile(null);
     } catch (err) {
       console.error("Upload error:", err);
-      alert("Error uploading product: " + err.message);
+      alert("Error saving image to Supabase: " + err.message);
     } finally {
       setIsUploading(false);
     }
